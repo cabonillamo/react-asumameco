@@ -15,15 +15,15 @@ const Title = styled.h2`
   }
 
   .text-1 {
-    color: #1a1a3f;
+    color: #ff0101;
   }
 
   .text-2 {
-    color: #e9d5b0;
+    color: #24da42;
   }
 
   .text-3 {
-    color: #f4a261;
+    color: #3107e9;
   }
 `;
 
