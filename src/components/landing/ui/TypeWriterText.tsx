@@ -15,11 +15,11 @@ const Title = styled.h2`
   }
 
   .text-1 {
-    color: #ff0101;
+    color: #caa748;
   }
 
   .text-2 {
-    color: #24da42;
+    color: #33bb4a;
   }
 
   .text-3 {
@@ -54,13 +54,13 @@ function TypeWriterText() {
           }}
           onInit={(typewriter) => {
             typewriter
-              .typeString('<span class="text-1">Our Vision</span>')
+              .typeString('<span class="text-1">World Vision</span>')
               .pauseFor(2000)
               .deleteAll()
-              .typeString('<span class="text-2">Our Mission</span>')
+              .typeString('<span class="text-2">Global Mission</span>')
               .pauseFor(2000)
               .deleteAll()
-              .typeString('<span class="text-3">Our Community</span>')
+              .typeString('<span class="text-3">Worldwide Community</span>')
               .pauseFor(2000)
               .deleteAll()
               .start();
@@ -69,7 +69,7 @@ function TypeWriterText() {
       </Title>
       <Subtitle>Join us today</Subtitle>
       <ButtonContainer>
-        <Button text="Get Started" link="/pre-signin" />
+        <Button text="Get Started" link="/pre-signup" />
       </ButtonContainer>
     </>
   );
