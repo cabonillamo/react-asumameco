@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TypeWriterText from "../ui/TypeWriterText";
-import CoverVideo from "../ui/CoverVideo";
+import CoverEarth from "../ui/CoverEarth";
 
 const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
@@ -30,7 +30,7 @@ const Box = styled.div`
 
 const Round = styled.div`
   position: absolute;
-  bottom: 2rem;
+  bottom: 5rem;
   right: 90%;
   width: 6rem;
   height: 6rem;
@@ -68,7 +68,7 @@ function Home() {
           <TypeWriterText />
         </Box>
         <Box>
-          <CoverVideo />
+          <CoverEarth />
         </Box>
         <Round>
           <Circle>&#x2193;</Circle>
