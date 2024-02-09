@@ -53,10 +53,10 @@ function Navigation() {
           <MenuItem>About</MenuItem>
           <MenuItem>Guide</MenuItem>
           <MenuItem>Showcase</MenuItem>
-          <MenuItem>Teamo</MenuItem>
+          <MenuItem>Team</MenuItem>
           <MenuItem>Faq</MenuItem>
         </Menu>
-       <Button text="Sign In" link="/signin" />
+        <Button text="Sign In" link="/signin" />
       </NavBar>
     </Section>
   );
