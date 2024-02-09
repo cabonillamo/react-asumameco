@@ -14,7 +14,7 @@ function CoverEarth() {
           <Earth />
         </Suspense>
         <Environment preset="sunset" />
-        {/* <ContactShadows
+        <ContactShadows
           position={[0, -2, 0]}
           opacity={0.5}
           scale={50}
@@ -22,7 +22,7 @@ function CoverEarth() {
           far={10}
           resolution={256}
           color="#000000"
-        /> */}
+        />
       </Canvas>
     </>
   );
