@@ -34,8 +34,6 @@ const Round = styled.div`
   right: 90%;
   width: 6rem;
   height: 6rem;
-  /* border: 1px solid ${(props) => props.theme.text};
-  border-radius: 50%; */
 
   li {
     width: 100%;
