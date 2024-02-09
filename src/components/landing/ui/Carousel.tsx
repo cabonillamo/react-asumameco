@@ -11,7 +11,7 @@ import img2 from "../../../assets/landing/Helping Hands.png";
 import img3 from "../../../assets/landing/Inclusion.png";
 import img4 from "../../../assets/landing/Volunteering.png";
 import img5 from "../../../assets/landing/People HighFive.webp";
-import arrow from "../../../assets/landing/arrow.svg";
+import arrow from "../../../icons/landing/Arrow.svg";
 
 const Container = styled.div`
   width: 25vw;
