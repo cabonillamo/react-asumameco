@@ -54,6 +54,7 @@ const Menu = styled.ul`
     transition: all 0.3s ease;
     flex-direction: column;
     justify-content: center;
+    touch-action: none;
   }
 `;
 
