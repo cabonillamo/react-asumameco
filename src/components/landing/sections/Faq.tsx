@@ -58,7 +58,7 @@ function Faq() {
   }, []);
 
   return (
-    <Section ref={ref}>
+    <Section id="faq" ref={ref}>
       <Title>Frequently Asked Questions</Title>
       <Container>
         <Box>

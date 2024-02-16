@@ -170,7 +170,7 @@ function Guide() {
   }, []);
 
   return (
-    <Section>
+    <Section id="guide">
       <Title>How it works</Title>
       <Container>
         <SvgContainer>

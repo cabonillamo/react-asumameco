@@ -44,17 +44,25 @@ const MenuItem = styled.li`
 `;
 
 function Navigation() {
+  const scrollTo = (id: string) => {
+    let element = document.getElementById(id);
+    element?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
   return (
     <Section>
       <NavBar>
         <Logo />
         <Menu>
-          <MenuItem>Home</MenuItem>
-          <MenuItem>About</MenuItem>
-          <MenuItem>Guide</MenuItem>
-          <MenuItem>Showcase</MenuItem>
-          <MenuItem>Team</MenuItem>
-          <MenuItem>Faq</MenuItem>
+          <MenuItem onClick={() => scrollTo("home")}>Home</MenuItem>
+          <MenuItem onClick={() => scrollTo("about")}>About</MenuItem>
+          <MenuItem onClick={() => scrollTo("guide")}>Guide</MenuItem>
+          <MenuItem onClick={() => scrollTo("team")}>Team</MenuItem>
+          <MenuItem onClick={() => scrollTo("faq")}>Faq</MenuItem>
         </Menu>
         <Button text="Sign In" link="/signin" />
       </NavBar>
