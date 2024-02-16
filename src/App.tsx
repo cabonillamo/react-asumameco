@@ -8,6 +8,7 @@ import Guide from "./components/landing/sections/Guide";
 import Team from "./components/landing/sections/Team";
 import Faq from "./components/landing/sections/Faq";
 import Footer from "./components/landing/footer/Footer";
+import ScrollToTop from "./components/landing/ui/ScrollToTop";
 
 function App(): JSX.Element {
   return (
@@ -21,6 +22,7 @@ function App(): JSX.Element {
         <Team />
         <Faq />
         <Footer />
+        <ScrollToTop />
       </ThemeProvider>
     </>
   );
