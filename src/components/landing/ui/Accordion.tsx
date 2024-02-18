@@ -23,10 +23,10 @@ const Title = styled.div`
   align-items: center;
 `;
 
-const Reveal = styled.div<{ clicked: boolean }>`
-  display: ${(props) => (props.clicked ? "block" : "none")};
+const Reveal = styled.div<{ $clicked: boolean }>`
+  display: ${(props) => (props.$clicked ? "block" : "none")};
   margin-top: 1rem;
-  color: ${(props) => `rbga(${props.theme.bodyRgba}, 0.6)`};
+  color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.6)`};
   font-size: ${(props) => props.theme.fontsm};
   font-weight: 300;
   line-height: 1.1rem;
@@ -78,7 +78,7 @@ function Accordion({
           </Indicator>
         )}
       </Title>
-      <Reveal clicked={collapsed}>{children}</Reveal>
+      <Reveal $clicked={collapsed}>{children}</Reveal>
     </Container>
   );
 }
