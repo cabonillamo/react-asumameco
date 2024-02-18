@@ -1,7 +1,7 @@
+import FormComponent from "../components/auth/FormComponent";
+
 function LoginPage() {
-  return (
-    <div>LoginPage</div>
-  )
+  return <FormComponent />;
 }
 
-export default LoginPage
+export default LoginPage;
