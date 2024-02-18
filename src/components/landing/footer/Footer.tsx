@@ -27,9 +27,8 @@ const Container = styled.div`
     width: 90%;
   }
 
-  h1{
+  h1 {
     font-size: ${(props) => props.theme.fontxxxl};
-
   }
 `;
 const Left = styled.div`
@@ -115,7 +114,7 @@ function Footer() {
           <Item onClick={() => scrollTo("about")}>About</Item>
           <Item onClick={() => scrollTo("guide")}>Guide</Item>
           <Item onClick={() => scrollTo("team")}>Team</Item>
-          <Item onClick={() => scrollTo("faq")}>Faq</Item> 
+          <Item onClick={() => scrollTo("faq")}>Faq</Item>
         </MenuItems>
       </Container>
       <Bottom>

@@ -32,7 +32,7 @@ const NavBar = styled.nav`
   }
 `;
 
-const Menu = styled.ul`
+const Menu = styled.ul<{ click: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,7 +85,7 @@ const MenuItem = styled.li`
   }
 `;
 
-const Hamburger = styled.span`
+const Hamburger = styled.span<{ click: boolean }>`
   width: ${(props) => (props.click ? "2rem" : "1.5rem")};
   height: 2px;
   background-color: ${(props) => props.theme.text};

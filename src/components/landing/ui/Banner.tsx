@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import img1 from "../../../assets/landing/Home Image.png";
 import img2 from "../../../assets/landing/Helping Hands.png";
 import img3 from "../../../assets/landing/Inclusion.png";
@@ -142,7 +143,9 @@ function Banner() {
         Join the <br /> Association
       </Title>
       <ButtonContainer>
-        <JoinNow>Join Now</JoinNow>
+        <Link to="/login">
+          <JoinNow>Join Now</JoinNow>
+        </Link>
       </ButtonContainer>
     </Section>
   );
