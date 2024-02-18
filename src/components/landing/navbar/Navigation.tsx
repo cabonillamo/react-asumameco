@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Logo from "../Logo";
 import Button from "../ui/Button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Section = styled.section`
   width: 100vw;
@@ -157,12 +158,16 @@ function Navigation() {
           <MenuItem onClick={() => scrollTo("faq")}>Faq</MenuItem>
           <MenuItem>
             <div className="mobile">
-              <Button text="Sign In" link="/signin" />
+              <Link to="/login">
+                <Button text="Sign In" link="/login" />
+              </Link>
             </div>
           </MenuItem>
         </Menu>
         <div className="desktop">
-          <Button text="Sign In" link="/signin" />
+          <Link to="/login">
+            <Button text="Sign In" link="/login" />
+          </Link>
         </div>
       </NavBar>
     </Section>
