@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { forwardRef } from "react";
+import { inputProps } from "../../interfaces/ui/inputProps";
 
 const Input = styled.input`
   background-color: #fff;
@@ -16,18 +18,17 @@ const Input = styled.input`
   }
 `;
 
-function InputComponent({
-  type,
-  name,
-  id,
-  placeholder,
-}: {
-  type: string;
-  name: string;
-  id: string;
-  placeholder: string;
-}) {
-  return <Input type={type} name={name} id={id} placeholder={placeholder} />;
-}
-
-export default InputComponent;
+export const InputComponent = forwardRef<HTMLInputElement, inputProps>(
+  ({ type, name, id, placeholder, ...rest }, ref) => {
+    return (
+      <Input
+        type={type}
+        name={name}
+        id={id}
+        placeholder={placeholder}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
