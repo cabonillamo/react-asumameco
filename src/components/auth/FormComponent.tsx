@@ -7,7 +7,10 @@ import { TextComponentOne, TextComponentTwo } from "./Text";
 import ButtonComponent from "./Button";
 import LinkComponent from "./Link";
 import { Box1Component1, Box1Component2 } from "./Box1";
-import InputComponent from "./Input";
+import { InputComponent } from "./Input";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   color: #1b1b1b;
@@ -20,26 +23,51 @@ const Form = styled.form`
 `;
 
 function FormComponent() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signIn, errors: loginErrors } = useAuth();
+  const navigate = useNavigate();
+
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
+
+  const onSubmit = handleSubmit((data) => {
+    try {
+      signIn(data);
+      navigate("/home");
+    } catch (error) {
+      console.error("Error during sign in:", error);
+    }
+  });
+
   return (
     <>
       <BackgroundBoxComponent clicked={click}>
         <ButtonAnimateComponent clicked={click} onClick={handleClick} />
-
-        <Form className="signin">
+        <Form onSubmit={onSubmit} className="signin">
+          {loginErrors &&
+            loginErrors.map((err: string, i: number) => (
+              <p key={i} className="text-red-500 text-center">
+                {err}
+              </p>
+            ))}
           <TitleComponent>Sign In</TitleComponent>
+          {errors.id && <p className="text-red-500">ID is required</p>}
           <InputComponent
-            type="email"
-            name="email"
-            id="emailId"
-            placeholder="Email"
+            type="id"
+            id="idId"
+            placeholder="User ID"
+            {...register("id", { required: true })}
           />
+          {errors.clave && <p className="text-red-500">Password is required</p>}
           <InputComponent
             type="password"
-            name="password"
             id="passwordId"
             placeholder="Password"
+            {...register("clave", { required: true })}
           />
           <LinkComponent href="#">Forgot Your Password?</LinkComponent>
           <ButtonComponent>Sign In</ButtonComponent>
