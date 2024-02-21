@@ -19,7 +19,7 @@ const Box1 = styled.div<{ clicked: boolean }>`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #eeedde;
+    background-color: #fff;
 
     z-index: -200;
   }

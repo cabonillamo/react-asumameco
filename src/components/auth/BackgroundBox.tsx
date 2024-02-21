@@ -12,7 +12,7 @@ const move = keyframes`
 `;
 
 const BackgroundBox = styled.div<{ clicked: boolean }>`
-  background-color: #beeefb;
+  background-color: #eaa159;
   height: 50vh;
   width: 50%;
 
