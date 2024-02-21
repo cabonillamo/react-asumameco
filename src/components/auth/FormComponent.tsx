@@ -74,7 +74,7 @@ function FormComponent() {
         </Form>
 
         <Form className="signup">
-          <TitleComponent>Sign Up</TitleComponent>
+          <TitleComponent>Pre Register</TitleComponent>
           <InputComponent
             type="text"
             name="username"
@@ -97,7 +97,7 @@ function FormComponent() {
           <LinkComponent href="#" onClick={handleClick}>
             Already have an Account?
           </LinkComponent>
-          <ButtonComponent>Sign Up</ButtonComponent>
+          <ButtonComponent>Pre Register</ButtonComponent>
         </Form>
 
         <TextComponentOne className="text1" clicked={click}>
