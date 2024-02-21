@@ -143,7 +143,7 @@ function Banner() {
         Join the <br /> Association
       </Title>
       <ButtonContainer>
-        <Link to="/login">
+        <Link to="/auth">
           <JoinNow>Join Now</JoinNow>
         </Link>
       </ButtonContainer>

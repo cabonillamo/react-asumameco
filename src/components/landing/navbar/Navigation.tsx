@@ -158,15 +158,15 @@ function Navigation() {
           <MenuItem onClick={() => scrollTo("faq")}>Faq</MenuItem>
           <MenuItem>
             <div className="mobile">
-              <Link to="/login">
-                <Button text="Sign In" link="/login" />
+              <Link to="/auth">
+                <Button text="Sign In" link="/auth" />
               </Link>
             </div>
           </MenuItem>
         </Menu>
         <div className="desktop">
-          <Link to="/login">
-            <Button text="Sign In" link="/login" />
+          <Link to="/auth">
+            <Button text="Sign In" link="/auth" />
           </Link>
         </div>
       </NavBar>

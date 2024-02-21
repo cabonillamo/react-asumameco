@@ -17,12 +17,12 @@ function App(): JSX.Element {
         <Route
           element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/home" />}
         >
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth" element={<LoginPage />} />
         </Route>
 
         {/* no logueado */}
         <Route
-          element={<ProtectedRoute isAllowed={isAuth} redirectTo="/login" />}
+          element={<ProtectedRoute isAllowed={isAuth} redirectTo="/auth" />}
         >
           <Route path="/home" element={<Home />} />
         </Route>

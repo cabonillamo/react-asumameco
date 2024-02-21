@@ -2,6 +2,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Carousel from "../ui/Carousel";
 import Button from "../ui/Button";
 import { dark } from "../../../styles/Theme";
+import { Link } from "react-router-dom";
 
 const Section = styled.section`
   min-height: 100vh;
@@ -157,7 +158,9 @@ function About() {
           <SubTextLight>You can manage your members and events</SubTextLight>
           <ButtonContainer>
             <ThemeProvider theme={dark}>
-              <Button text="Join Now!" link="/pre-signup" />
+              <Link to="/auth">
+                <Button text="Join Now!" link="/auth" />
+              </Link>
             </ThemeProvider>
           </ButtonContainer>
         </Box>
