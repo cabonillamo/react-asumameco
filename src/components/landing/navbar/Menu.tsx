@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const Menu = styled.ul<{ click: boolean }>`
+const Menu = styled.ul<{ $click: string | boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@ const Menu = styled.ul<{ click: boolean }>`
     background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.85)`};
     backdrop-filter: blur(2px);
     transform: ${(props) =>
-      props.click ? "translateY(0)" : "translateY(1000%)"};
+      props.$click ? "translateY(0)" : "translateY(1000%)"};
 
     transition: all 0.3s ease;
     flex-direction: column;
@@ -34,7 +34,7 @@ function MenuComponent({
   click: boolean;
   children: React.ReactNode;
 }) {
-  return <Menu click={click}>{children}</Menu>;
+  return <Menu $click={click.toString()}>{children}</Menu>;
 }
 
 export default MenuComponent;
