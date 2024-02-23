@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Banner from "../ui/Banner";
-import Logo from "../Logo";
+import Logo from "../../../icons/landing/Logo";
 
 const Section = styled.section`
   min-height: 100vh;

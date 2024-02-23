@@ -1,7 +1,7 @@
 // import { useAuth } from "../../hooks/useAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Logo from "../landing/Logo";
+import Logo from "../../icons/landing/Logo";
 // import { useForm } from "react-hook-form";
 import CustomButton from "./CustomButton";
 import { BsMoon, BsSunFill } from "react-icons/bs";
