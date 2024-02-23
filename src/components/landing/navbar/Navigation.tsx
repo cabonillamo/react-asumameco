@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Logo from "../Logo";
+import Logo from "../../../icons/landing/Logo";
 import Button from "../ui/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import HamburgerComponent from "./Hamburger";
 
 const Section = styled.section`
   width: 100vw;
@@ -52,6 +53,7 @@ const Menu = styled.ul<{ click: boolean }>`
     backdrop-filter: blur(2px);
     transform: ${(props) =>
       props.click ? "translateY(0)" : "translateY(1000%)"};
+
     transition: all 0.3s ease;
     flex-direction: column;
     justify-content: center;
@@ -85,51 +87,6 @@ const MenuItem = styled.li`
   }
 `;
 
-const Hamburger = styled.span<{ click: boolean }>`
-  width: ${(props) => (props.click ? "2rem" : "1.5rem")};
-  height: 2px;
-  background-color: ${(props) => props.theme.text};
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: ${(props) =>
-    props.click
-      ? "translateX(-50%) rotate(90deg)"
-      : "translateX(-50%) rotate(0)"};
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &::after,
-  &::before {
-    content: " ";
-    width: ${(props) => (props.click ? "1rem" : "1.5rem")};
-    height: 2px;
-    right: ${(props) => (props.click ? "-2px" : "0")};
-    background: ${(props) => props.theme.text};
-    position: absolute;
-    transition: all 0.3s ease;
-  }
-
-  @media (max-width: 64em) {
-    /* 1024 px */
-    display: flex;
-  }
-
-  &::after {
-    top: ${(props) => (props.click ? "0.3rem" : "0.5rem")};
-    transform: ${(props) => (props.click ? "rotate(-40deg)" : "translateX(0)")};
-  }
-
-  &::before {
-    bottom: ${(props) => (props.click ? "0.3rem" : "0.5rem")};
-    transform: ${(props) => (props.click ? "rotate(40deg)" : "translateX(0)")};
-  }
-`;
-
 function Navigation() {
   const [click, setClick] = useState(false);
   const scrollTo = (id: string) => {
@@ -147,9 +104,14 @@ function Navigation() {
     <Section id="navigation">
       <NavBar>
         <Logo />
-        <Hamburger click={click} onClick={() => setClick(!click)}>
+        <HamburgerComponent
+          click={click}
+          setClick={() => setClick(!click)}
+          onClick={() => console.log("Hamburger clicked")}
+        >
           &nbsp;
-        </Hamburger>
+        </HamburgerComponent>
+
         <Menu click={click}>
           <MenuItem onClick={() => scrollTo("home")}>Home</MenuItem>
           <MenuItem onClick={() => scrollTo("about")}>About</MenuItem>
