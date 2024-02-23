@@ -6,25 +6,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const storedUser = localStorage.getItem("user");
   const storedIsAuth = localStorage.getItem("isAuth");
   const [user, setUser] = useState<any>(storedUser || "");
+  const [userEmail, setUserEmail] = useState<any>(storedUser || "");
   const [isAuth, setIsAuth] = useState<boolean>(storedIsAuth === "true");
   const [errors, setErrors] = useState<string[]>([]);
 
   const signIn = async (data: any) => {
     try {
       const res = await loginRequest(data);
-      console.log("Successful login:", res.data.nombre);
+      console.log(res.data);
+
       setUser(res.data.nombre);
+      setUserEmail(res.data.email);
       setIsAuth(true);
+
       localStorage.setItem("user", res.data.nombre);
       localStorage.setItem("isAuth", "true");
+
       return res.data.nombre;
     } catch (error: any) {
-      console.error("Error during login:", error.response);
-      if (Array.isArray(error.response.data)) {
-        setErrors(error.response.data);
-      } else {
-        setErrors([error.response.data]);
-      }
+      if (Array.isArray(error.response.data)) setErrors(error.response.data);
+      else setErrors([error.response.data]);
     }
   };
 
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         user,
+        userEmail,
         isAuth,
         errors,
         signIn,
