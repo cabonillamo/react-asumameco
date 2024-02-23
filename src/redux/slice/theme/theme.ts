@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: JSON.parse(window?.localStorage.getItem("theme") as string) ?? "light",
@@ -8,7 +8,7 @@ const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    setTheme(state, action) {
+    setTheme(state, action: PayloadAction<string>) {
       state.theme = action.payload;
       localStorage.setItem("theme", JSON.stringify(action.payload));
     },
@@ -17,10 +17,8 @@ const themeSlice = createSlice({
 
 export default themeSlice.reducer;
 
-
-export function setTheme(value: string) {
-    return (dispatch: any) => {
-        dispatch(themeSlice.actions.setTheme(value))
-        
-    }
+export function SetTheme(value: string) {
+  return (dispatch: any) => {
+    dispatch(themeSlice.actions.setTheme(value));
+  };
 }
