@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Btn = styled.button`
@@ -35,12 +36,11 @@ const Btn = styled.button`
     padding: 0.3rem;
   }
 `;
-function Button({ link, text }: { link: string; text: string }) {
+
+function Button({ text, to }: { text: string; to: string }) {
   return (
-    <Btn>
-      <a href={link} aria-label={text} target="_blank">
-        {text}
-      </a>
+    <Btn as={Link} to={to} aria-label={text}>
+      {text}
     </Btn>
   );
 }
