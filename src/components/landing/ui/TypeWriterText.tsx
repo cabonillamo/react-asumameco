@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Typewriter from "typewriter-effect";
 import Button from "./Button";
-import { Link } from "react-router-dom";
 
 const Title = styled.h2`
   font-size: ${(props) => props.theme.fontxxl};
@@ -100,9 +99,7 @@ function TypeWriterText() {
       </Title>
       <Subtitle>Join us today</Subtitle>
       <ButtonContainer>
-        <Link to="/auth">
-          <Button text="Get Started" link="/auth" />
-        </Link>
+          <Button text="Get Started" to="/auth" />
       </ButtonContainer>
     </>
   );
