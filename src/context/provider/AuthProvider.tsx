@@ -2,10 +2,12 @@ import { AuthContext } from "../AuthContext";
 import { loginRequest } from "../../api/auth.api";
 import { useState } from "react";
 
-export const AuthProvider = ({ children }: { children: React.ReactNode[] }) => {
-  const [user, setUser] = useState<any>("");
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-  const [errors, setErrors] = useState<any>(null);
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const storedUser = localStorage.getItem("user");
+  const storedIsAuth = localStorage.getItem("isAuth");
+  const [user, setUser] = useState<any>(storedUser || "");
+  const [isAuth, setIsAuth] = useState<boolean>(storedIsAuth === "true");
+  const [errors, setErrors] = useState<string[]>([]);
 
   const signIn = async (data: any) => {
     try {
@@ -13,6 +15,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode[] }) => {
       console.log("Successful login:", res.data.nombre);
       setUser(res.data.nombre);
       setIsAuth(true);
+      localStorage.setItem("user", res.data.nombre);
+      localStorage.setItem("isAuth", "true");
       return res.data.nombre;
     } catch (error: any) {
       console.error("Error during login:", error.response);
@@ -23,7 +27,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode[] }) => {
       }
     }
   };
-
 
   return (
     <AuthContext.Provider
