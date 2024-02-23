@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-const Hamburger = styled.span<{ click: boolean }>`
-  width: ${(props) => (props.click ? "2rem" : "1.5rem")};
+const Hamburger = styled.span<{ $click: string | boolean }>`
+  width: ${(props) => (String(props.$click) === "true" ? "2rem" : "1.5rem")};
   height: 2px;
   background-color: ${(props) => props.theme.text};
   position: absolute;
   top: 2rem;
   left: 50%;
   transform: ${(props) =>
-    props.click
+    String(props.$click) === "true"
       ? "translateX(-50%) rotate(90deg)"
       : "translateX(-50%) rotate(0)"};
   display: none;
@@ -20,9 +20,9 @@ const Hamburger = styled.span<{ click: boolean }>`
   &::after,
   &::before {
     content: " ";
-    width: ${(props) => (props.click ? "1rem" : "1.5rem")};
+    width: ${(props) => (String(props.$click) === "true" ? "1rem" : "1.5rem")};
     height: 2px;
-    right: ${(props) => (props.click ? "-2px" : "0")};
+    right: ${(props) => (String(props.$click) === "true" ? "-2px" : "0")};
     background: ${(props) => props.theme.text};
     position: absolute;
     transition: all 0.3s ease;
@@ -34,13 +34,16 @@ const Hamburger = styled.span<{ click: boolean }>`
   }
 
   &::after {
-    top: ${(props) => (props.click ? "0.3rem" : "0.5rem")};
-    transform: ${(props) => (props.click ? "rotate(-40deg)" : "translateX(0)")};
+    top: ${(props) => (String(props.$click) === "true" ? "0.3rem" : "0.5rem")};
+    transform: ${(props) =>
+      String(props.$click) === "true" ? "rotate(-40deg)" : "translateX(0)"};
   }
 
   &::before {
-    bottom: ${(props) => (props.click ? "0.3rem" : "0.5rem")};
-    transform: ${(props) => (props.click ? "rotate(40deg)" : "translateX(0)")};
+    bottom: ${(props) =>
+      String(props.$click) === "true" ? "0.3rem" : "0.5rem"};
+    transform: ${(props) =>
+      String(props.$click) === "true" ? "rotate(40deg)" : "translateX(0)"};
   }
 `;
 
@@ -57,7 +60,7 @@ function HamburgerComponent({
 }) {
   return (
     <Hamburger
-      click={click}
+      $click={click.toString()}
       onClick={() => {
         setClick(!click);
         onClick();
