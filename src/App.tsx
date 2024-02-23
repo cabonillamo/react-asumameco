@@ -5,13 +5,14 @@ import Home from "./pages/HomePage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
-import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 function App(): JSX.Element {
   const { isAuth } = useAuth();
+  const { theme } = useSelector((state: any) => state.theme);
 
   return (
-    <>
+    <div data-theme={theme}>
       <Routes>
         {/* logueado */}
         <Route
@@ -29,7 +30,7 @@ function App(): JSX.Element {
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
