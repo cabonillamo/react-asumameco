@@ -4,8 +4,8 @@ import { useState } from "react";
 import HamburgerComponent from "./Hamburger";
 import NavBarComponent from "./NavBar";
 import SectionComponent from "./Section";
-import MenuItemComponent from "./MenuItem";
 import MenuComponent from "./Menu";
+import MenuItemComponent from "./MenuItem";
 
 function Navigation() {
   const [click, setClick] = useState<boolean>(false);
@@ -20,7 +20,6 @@ function Navigation() {
   };
 
   return (
-   
     <SectionComponent id="navigation">
       <NavBarComponent>
         <Logo />
