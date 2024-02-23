@@ -8,7 +8,7 @@ import MenuItemComponent from "./MenuItem";
 import MenuComponent from "./Menu";
 
 function Navigation() {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState<boolean>(false);
   const scrollTo = (id: string) => {
     let element = document.getElementById(id);
     element?.scrollIntoView({
@@ -20,6 +20,7 @@ function Navigation() {
   };
 
   return (
+   
     <SectionComponent id="navigation">
       <NavBarComponent>
         <Logo />
