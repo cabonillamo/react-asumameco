@@ -58,6 +58,8 @@ function HamburgerComponent({
   onClick: () => void;
   children: React.ReactNode;
 }) {
+  console.log("Click State:", click);
+
   return (
     <Hamburger
       $click={click.toString()}

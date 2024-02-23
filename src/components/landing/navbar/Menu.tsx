@@ -34,7 +34,7 @@ function MenuComponent({
   click: boolean;
   children: React.ReactNode;
 }) {
-  return <Menu $click={click.toString()}>{children}</Menu>;
+  return <Menu $click={click}>{children}</Menu>;
 }
 
 export default MenuComponent;
