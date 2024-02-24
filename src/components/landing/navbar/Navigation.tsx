@@ -1,11 +1,13 @@
 import Logo from "../../../icons/landing/Logo";
 import Button from "../ui/Button";
 import { useState } from "react";
-import HamburgerComponent from "./Hamburger";
-import NavBarComponent from "./NavBar";
-import SectionComponent from "./Section";
-import MenuComponent from "./Menu";
-import MenuItemComponent from "./MenuItem";
+import {
+  HamburgerComponent,
+  NavBarComponent,
+  SectionComponent,
+  MenuComponent,
+  MenuItemComponent,
+} from ".";
 
 function Navigation() {
   const [click, setClick] = useState<boolean>(false);
