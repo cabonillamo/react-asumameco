@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Banner from "../ui/Banner";
+import { Banner } from "../ui";
 import Logo from "../../../icons/landing/Logo";
 
 const Section = styled.section`

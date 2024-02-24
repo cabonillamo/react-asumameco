@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import DrawSvg from "../ui/DrawSvg";
 import { useLayoutEffect, useRef } from "react";
+import { DrawSvg } from "../ui";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 

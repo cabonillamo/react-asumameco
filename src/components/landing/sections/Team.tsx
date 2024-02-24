@@ -4,7 +4,7 @@ import img1 from "../../../assets/landing/a frontend.webp";
 import img2 from "../../../assets/landing/f backend.webp";
 import img3 from "../../../assets/landing/c frontend.png";
 import img4 from "../../../assets/landing/s backend.png";
-import ConfettiComponent from "../ui/Confetti";
+import { ConfettiComponent } from "../ui";
 
 const Section = styled.section`
   min-height: 100vh;

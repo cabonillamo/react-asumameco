@@ -3,6 +3,7 @@ import NavBarComponent from "./NavBar";
 import SectionComponent from "./Section";
 import MenuComponent from "./Menu";
 import MenuItemComponent from "./MenuItem";
+import Navigation from "./Navigation";
 
 export {
   HamburgerComponent,
@@ -10,4 +11,5 @@ export {
   SectionComponent,
   MenuComponent,
   MenuItemComponent,
+  Navigation,
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const Menu = styled.ul<{ $click: string | boolean }>`
   display: flex;
   justify-content: space-between;

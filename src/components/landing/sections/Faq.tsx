@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Accordion from "../ui/Accordion";
 import { useLayoutEffect, useRef } from "react";
+import { Accordion } from "../ui";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import TypeWriterText from "../ui/TypeWriterText";
-import CoverEarth from "../ui/CoverEarth";
+import { CoverEarth, TypeWriterText } from "../ui";
 
 const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};

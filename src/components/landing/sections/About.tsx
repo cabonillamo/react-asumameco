@@ -1,6 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
-import Carousel from "../ui/Carousel";
-import Button from "../ui/Button";
+import { Button, Carousel } from "../ui";
 import { dark } from "../../../styles/Theme";
 
 const Section = styled.section`
@@ -157,7 +156,7 @@ function About() {
           <SubTextLight>You can manage your members and events</SubTextLight>
           <ButtonContainer>
             <ThemeProvider theme={dark}>
-                <Button text="Join Now!" to="/auth" />
+              <Button text="Join Now!" to="/auth" />
             </ThemeProvider>
           </ButtonContainer>
         </Box>

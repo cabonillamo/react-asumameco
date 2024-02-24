@@ -1,5 +1,5 @@
 import Logo from "../../../icons/landing/Logo";
-import Button from "../ui/Button";
+import { Button } from "../ui";
 import { useState } from "react";
 import {
   HamburgerComponent,
