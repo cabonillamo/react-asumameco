@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: { theme: string } = {
   theme: JSON.parse(window?.localStorage.getItem("theme") as string) ?? "light",
 };
 
@@ -17,8 +17,6 @@ const themeSlice = createSlice({
 
 export default themeSlice.reducer;
 
-export function SetTheme(value: string) {
-  return (dispatch: any) => {
-    dispatch(themeSlice.actions.setTheme(value));
-  };
-}
+export const { setTheme } = themeSlice.actions;
+
+export type ThemeAction = ReturnType<typeof setTheme>;

@@ -1,27 +1,18 @@
-// import { useAuth } from "../../hooks/useAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../icons/landing/Logo";
-// import { useForm } from "react-hook-form";
 import CustomButton from "./CustomButton";
 import { BsMoon, BsSunFill } from "react-icons/bs";
-import { SetTheme } from "../../redux/slice/theme/theme";
+import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
+import { Dispatch } from "@reduxjs/toolkit";
 
 function TopBar() {
   const { theme } = useSelector((state: any) => state.theme);
-  // const { user } = useAuth();
-  const dispatch = useDispatch();
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const handleSearch = async (data: any) => {};
+  const dispatch: Dispatch<ThemeAction> = useDispatch();
 
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
-    dispatch(SetTheme(themeValue));
+    dispatch(setTheme(themeValue));
   };
 
   return (
