@@ -1,15 +1,5 @@
 import { forwardRef } from "react";
-
-interface TextInputProps {
-  type?: string;
-  placeholder?: string;
-  styles?: string;
-  label?: string;
-  labelStyles?: string;
-  register?: any;
-  name?: string;
-  error?: any;
-}
+import { TextInputProps } from "../../interfaces/ui/textInputProps";
 
 const TextInput = forwardRef(
   (

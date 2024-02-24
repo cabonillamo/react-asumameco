@@ -1,10 +1,4 @@
-interface CustomButtonProps {
-  title?: string;
-  containerStyles?: string;
-  iconRight?: boolean;
-  type?: string;
-  onClick?: any;
-}
+import { CustomButtonProps } from "../../interfaces/ui/buttonProps";
 
 function CustomButton({
   title,
