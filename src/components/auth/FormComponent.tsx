@@ -1,16 +1,20 @@
 import { useState } from "react";
-import styled from "styled-components";
-import TitleComponent from "./Title";
-import BackgroundBoxComponent from "./BackgroundBox";
-import ButtonAnimateComponent from "./ButtonAnimate";
-import { TextComponentOne, TextComponentTwo } from "./Text";
-import ButtonComponent from "./Button";
-import LinkComponent from "./Link";
-import { Box1Component1, Box1Component2 } from "./Box1";
-import { InputComponent } from "./Input";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import {
+  BackgroundBoxComponent,
+  TitleComponent,
+  ButtonAnimateComponent,
+  TextComponentOne,
+  TextComponentTwo,
+  ButtonComponent,
+  LinkComponent,
+  Box1Component1,
+  Box1Component2,
+  InputComponent,
+} from "./";
 
 const Form = styled.form`
   color: #1b1b1b;
