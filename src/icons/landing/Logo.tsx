@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const LogoText = styled.h1`
@@ -17,11 +16,8 @@ const LogoText = styled.h1`
 `;
 
 function Logo() {
-  return (
-    <LogoText>
-      <Link to="/">Q.</Link>
-    </LogoText>
-  );
+  return <LogoText>Q.</LogoText>;
 }
+
 
 export default Logo;

@@ -17,7 +17,7 @@ function TopBar() {
 
   return (
     <div className="topbar w-full flex items-center justify-between py-3 md:py-6 px-4 bg-primary">
-      <Link to={"/home"} className="flex gap-2 items-center">
+      <Link to="/" className="flex gap-2 items-center">
         <div className="p-1 md:p-2 bg-[#065ad8] rounded text-white">
           <Logo />
         </div>
@@ -25,7 +25,6 @@ function TopBar() {
           Asumameco
         </span>
       </Link>
-
       <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
         <button onClick={() => handleTheme()}>
           {theme ? <BsMoon /> : <BsSunFill />}
