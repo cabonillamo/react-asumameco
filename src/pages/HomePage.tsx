@@ -1,7 +1,6 @@
-import TopBar from "../components/home/TopBar";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
-import ProfileCard from "../components/home/ProfileCard";
+import { ProfileCard, TopBar } from "../components/home";
 
 function Home() {
   const { user, userEmail } = useAuth();

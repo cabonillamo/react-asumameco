@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../icons/landing/Logo";
-import CustomButton from "./CustomButton";
 import { BsMoon, BsSunFill } from "react-icons/bs";
 import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
+import { CustomButton } from ".";
 
 function TopBar() {
   const { theme } = useSelector((state: any) => state.theme);
