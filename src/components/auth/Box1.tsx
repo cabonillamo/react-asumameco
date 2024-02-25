@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Box1 = styled.div<{ clicked: boolean }>`
+const Box1 = styled.div<{ $clicked: boolean }>`
   background-color: #f1fdcd;
   width: 50%;
   height: 100%;
@@ -9,7 +9,7 @@ const Box1 = styled.div<{ clicked: boolean }>`
   top: 0;
 
   transform: ${(props) =>
-    props.clicked ? "translateX(90%)" : "translateX(10%)"};
+    props.$clicked ? "translateX(90%)" : "translateX(10%)"};
 
   transition: transform 1s;
 
@@ -39,7 +39,7 @@ const Box1 = styled.div<{ clicked: boolean }>`
   }
 `;
 
-const Box2 = styled.div<{ clicked: boolean }>`
+const Box2 = styled.div<{ $clicked: boolean }>`
   background-color: #202020;
   width: 45%;
   height: 100%;
@@ -49,17 +49,17 @@ const Box2 = styled.div<{ clicked: boolean }>`
 
   z-index: 600;
   transform: ${(props) =>
-    props.clicked ? "translateX(-122%)" : "translateX(0%)"};
+    props.$clicked ? "translateX(-122%)" : "translateX(0%)"};
   transition: transform 1s;
 
   border-radius: ${(props) =>
-    props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
+    props.$clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
 `;
 
 export const Box1Component1 = ({ clicked }: { clicked: boolean }) => {
-  return <Box1 clicked={clicked} />;
+  return <Box1 $clicked={clicked} />;
 };
 
 export const Box1Component2 = ({ clicked }: { clicked: boolean }) => {
-  return <Box2 clicked={clicked} />;
+  return <Box2 $clicked={clicked} />;
 };

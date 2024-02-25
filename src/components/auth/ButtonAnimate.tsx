@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ButtonAnimate = styled.button<{ clicked: boolean }>`
+const ButtonAnimate = styled.button<{ $clicked: boolean }>`
   position: absolute;
   z-index: 1000;
   height: 5rem;
@@ -9,9 +9,9 @@ const ButtonAnimate = styled.button<{ clicked: boolean }>`
   border: none;
   cursor: pointer;
 
-  right: ${(props) => (props.clicked ? "52%" : "42%")};
+  right: ${(props) => (props.$clicked ? "52%" : "42%")};
 
-  transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
+  transform: ${(props) => (props.$clicked ? "rotate(360deg)" : "rotate(0)")};
 
   transition: all 1.5s;
   background-color: transparent;
@@ -33,7 +33,7 @@ function ButtonAnimateComponent({
   clicked: boolean;
   onClick: () => void;
 }) {
-  return <ButtonAnimate clicked={clicked} onClick={onClick} />;
+  return <ButtonAnimate $clicked={clicked} onClick={onClick} />;
 }
 
 export default ButtonAnimateComponent;
