@@ -15,19 +15,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signIn = async (data: FormData) => {
     try {
       const res = await loginRequest(data);
-      console.log(`res`, res);
-      console.log(`res.data`, res.data);
 
       setUser(res.data);
       setIsAuth(true);
 
-      localStorage.setItem("user", JSON.stringify(res.data.nombre));
+      localStorage.setItem("user", JSON.stringify(res.data));
       localStorage.setItem("isAuth", "true");
 
       return res.data.nombre;
     } catch (error: any) {
       if (Array.isArray(error.response.data)) setErrors(error.response.data);
       else setErrors([error.response.data]);
+    }
+  };
+
+  const loadUserFromLocalStorage = () => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
     }
   };
 
@@ -38,6 +44,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isAuth,
         errors,
         signIn,
+        loadUserFromLocalStorage,
       }}
     >
       {children}
