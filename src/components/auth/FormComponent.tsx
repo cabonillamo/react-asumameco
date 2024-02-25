@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,17 +13,9 @@ import {
   Box1Component1,
   Box1Component2,
   InputComponent,
+  FormSigninComponent,
+  FormSignupComponent,
 } from "./";
-
-const Form = styled.form`
-  color: #1b1b1b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 0 4rem;
-`;
 
 function FormComponent() {
   const {
@@ -51,10 +42,13 @@ function FormComponent() {
     <>
       <BackgroundBoxComponent clicked={click}>
         <ButtonAnimateComponent clicked={click} onClick={handleClick} />
-        <Form onSubmit={onSubmit} className="signin">
+        <FormSigninComponent onSubmit={onSubmit} className="signin">
           {loginErrors &&
             loginErrors.map((err: string, i: number) => (
-              <p key={i} className="text-red-500 text-center">
+              <p
+                key={i}
+                className="text-red-500 text-center mb-2 font-semibold"
+              >
                 {err}
               </p>
             ))}
@@ -69,15 +63,15 @@ function FormComponent() {
           {errors.clave && <p className="text-red-500">Password is required</p>}
           <InputComponent
             type="password"
-            id="passwordId"
+            id="passwordId1"
             placeholder="Password"
             {...register("clave", { required: true })}
           />
           <LinkComponent href="#">Forgot Your Password?</LinkComponent>
           <ButtonComponent>Sign In</ButtonComponent>
-        </Form>
+        </FormSigninComponent>
 
-        <Form className="signup">
+        <FormSignupComponent className="signup">
           <TitleComponent>Pre Register</TitleComponent>
           <InputComponent
             type="text"
@@ -95,14 +89,14 @@ function FormComponent() {
           <InputComponent
             type="password"
             name="password"
-            id="passwordId"
+            id="passwordId2"
             placeholder="Password"
           />
           <LinkComponent href="#" onClick={handleClick}>
             Already have an Account?
           </LinkComponent>
           <ButtonComponent>Pre Register</ButtonComponent>
-        </Form>
+        </FormSignupComponent>
 
         <TextComponentOne className="text1" clicked={click}>
           <h1>Welcome!</h1>
