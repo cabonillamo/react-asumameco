@@ -1,13 +1,8 @@
 import { useAuth } from "../hooks/useAuth";
 import { ProfileCard, TopBar } from "../components/home";
-import { useEffect } from "react";
 
 function Home() {
-  const { user, loadUserFromLocalStorage } = useAuth();
-
-  useEffect(() => {
-    loadUserFromLocalStorage();
-  }, []);
+  const { user } = useAuth();
 
   return (
     <div className="home w-full px-0 lg:px-10 pb-20 2xl:px-40 bg-bgColor lg:rounded-lg h-screen overflow-hidden">

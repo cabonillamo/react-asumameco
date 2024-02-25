@@ -5,5 +5,4 @@ export interface authContextProps {
   isAuth: boolean;
   errors: any;
   signIn: (data: any) => Promise<any>;
-  loadUserFromLocalStorage: () => void;
 }

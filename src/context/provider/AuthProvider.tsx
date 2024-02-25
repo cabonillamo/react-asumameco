@@ -1,26 +1,22 @@
 import { AuthContext } from "../AuthContext";
-import { loginRequest } from "../../api/auth.api";
-import { useState } from "react";
+import { loginRequest, meRequest } from "../../api/auth.api";
+import { useEffect, useState } from "react";
 import { User } from "../../interfaces/context/auth/user";
+import Cookie from "js-cookie";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const storedUser = localStorage.getItem("user");
-  const storedIsAuth = localStorage.getItem("isAuth");
-  const [user, setUser] = useState<User | null>(
-    storedUser ? JSON.parse(storedUser) : null
-  );
-  const [isAuth, setIsAuth] = useState<boolean>(storedIsAuth === "true");
+  const [user, setUser] = useState<User | null>(null);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const [errors, setErrors] = useState<string[]>([]);
 
   const signIn = async (data: FormData) => {
     try {
       const res = await loginRequest(data);
 
+      Cookie.set("token", res.data.usuario.token);
+
       setUser(res.data);
       setIsAuth(true);
-
-      localStorage.setItem("user", JSON.stringify(res.data));
-      localStorage.setItem("isAuth", "true");
 
       return res.data.nombre;
     } catch (error: any) {
@@ -29,13 +25,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const loadUserFromLocalStorage = () => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUser(parsedUser);
+  useEffect(() => {
+    const token = Cookie.get("token");
+    if (token) {
+      meRequest(token)
+        .then((res) => {
+          console.log(res);
+          setUser(res);
+          setIsAuth(true);
+        })
+        .catch((error) => {
+          console.error("Error response:", error.response);
+          setUser(null);
+          setIsAuth(false);
+        });
     }
-  };
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -44,7 +49,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isAuth,
         errors,
         signIn,
-        loadUserFromLocalStorage,
       }}
     >
       {children}
