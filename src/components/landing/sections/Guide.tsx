@@ -220,7 +220,7 @@ function Guide() {
             start: "top center+=200px",
             end: "bottom center",
             scrub: true,
-            markers: true,
+            markers: false,
           },
         }
       );

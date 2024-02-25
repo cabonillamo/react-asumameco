@@ -74,7 +74,7 @@ function Faq() {
       pin: true,
       pinSpacing: false,
       scrub: true,
-      markers: true,
+      markers: false,
     });
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());

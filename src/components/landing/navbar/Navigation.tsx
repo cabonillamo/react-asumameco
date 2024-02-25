@@ -28,7 +28,6 @@ function Navigation() {
         <HamburgerComponent
           click={click}
           setClick={() => setClick(!click)}
-          onClick={() => console.log("Hamburger clicked")}
         >
           &nbsp;
         </HamburgerComponent>

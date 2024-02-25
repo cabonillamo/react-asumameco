@@ -50,22 +50,18 @@ const Hamburger = styled.span<{ $click: string | boolean }>`
 function HamburgerComponent({
   click,
   setClick,
-  onClick,
   children,
 }: {
   click: boolean;
   setClick: (click: boolean) => void;
-  onClick: () => void;
+
   children: React.ReactNode;
 }) {
-  console.log("Click State:", click);
-
   return (
     <Hamburger
       $click={click.toString()}
       onClick={() => {
         setClick(!click);
-        onClick();
       }}
     >
       {children}

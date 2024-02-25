@@ -55,12 +55,8 @@ function DrawSvg() {
     let svg = document.getElementsByClassName("svg-path")[0] as SVGPathElement;
     const length = svg.getTotalLength();
 
-    console.log(length);
-
     svg.style.strokeDasharray = `${length}`;
     svg.style.strokeDashoffset = `${length}`;
-
-    console.log(length);
 
     let t1: gsap.core.Timeline;
     t1 = gsap.timeline({
@@ -69,7 +65,6 @@ function DrawSvg() {
         start: "top center",
         end: "bottom bottom",
         onUpdate: (self) => {
-          console.log(self);
           const draw = length * self.progress;
           svg.style.strokeDashoffset = `${length - draw}`;
         },
