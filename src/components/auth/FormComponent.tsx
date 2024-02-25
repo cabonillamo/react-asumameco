@@ -29,13 +29,9 @@ function FormComponent() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
-  const onSubmit = handleSubmit((data) => {
-    try {
-      signIn(data);
-      navigate("/home");
-    } catch (error) {
-      console.error("Error during sign in:", error);
-    }
+  const onSubmit = handleSubmit(async (data) => {
+    const user = await signIn(data);
+    if (user) navigate("/home");
   });
 
   return (

@@ -15,10 +15,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       Cookie.set("token", res.data.usuario.token);
 
-      setUser(res.data);
+      setUser(res.data.usuario); 
       setIsAuth(true);
 
-      return res.data.nombre;
+      return res.data;
     } catch (error: any) {
       if (Array.isArray(error.response.data)) setErrors(error.response.data);
       else setErrors([error.response.data]);
