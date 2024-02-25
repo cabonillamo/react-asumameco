@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { User } from "../../interfaces/context/auth/user";
 import { NoProfile } from "../../assets/home";
 
-function ProfileCard({ user }: { user: User }) {
+function ProfileCard({ user }: { user: User | null }) {
+  if (!user) return null;
   return (
     <div className="w-full bg-primary flex flex-col items-center shadow-sm rounded-xl px-6 py-4">
       <div className="w-full flex items-center justify-between border-b pb-5 border-[#66666645]">
