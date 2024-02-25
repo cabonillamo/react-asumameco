@@ -5,10 +5,12 @@ import { BsMoon, BsSunFill } from "react-icons/bs";
 import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
 import { CustomButton } from ".";
+import { useAuth } from "../../hooks/useAuth";
 
 function TopBar() {
   const { theme } = useSelector((state: any) => state.theme);
   const dispatch: Dispatch<ThemeAction> = useDispatch();
+  const { signOut } = useAuth();
 
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
@@ -34,7 +36,9 @@ function TopBar() {
 
       <div>
         <CustomButton
-          onClick={() => {}}
+          onClick={() => {
+            signOut();
+          }}
           title="Logout"
           containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
         />

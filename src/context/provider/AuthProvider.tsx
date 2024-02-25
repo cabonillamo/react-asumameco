@@ -1,5 +1,5 @@
 import { AuthContext } from "../AuthContext";
-import { loginRequest, meRequest } from "../../api/auth.api";
+import { loginRequest, signOutRequest, meRequest } from "../../api/auth.api";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/context/auth/user";
 import Cookie from "js-cookie";
@@ -25,12 +25,27 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const signOut = async () => {
+    try {
+      const token = Cookie.get("token");
+      if (!token) throw new Error("No token found");
+
+      await signOutRequest(token);
+
+      Cookie.remove("token");
+
+      setUser(null);
+      setIsAuth(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const token = Cookie.get("token");
     if (token) {
       meRequest(token)
         .then((res) => {
-          console.log(res);
           setUser(res);
           setIsAuth(true);
         })
@@ -49,6 +64,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isAuth,
         errors,
         signIn,
+        signOut,
       }}
     >
       {children}
