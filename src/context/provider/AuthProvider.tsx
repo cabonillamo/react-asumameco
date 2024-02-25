@@ -1,25 +1,27 @@
 import { AuthContext } from "../AuthContext";
 import { loginRequest } from "../../api/auth.api";
 import { useState } from "react";
+import { User } from "../../interfaces/context/auth/user";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const storedUser = localStorage.getItem("user");
   const storedIsAuth = localStorage.getItem("isAuth");
-  const [user, setUser] = useState<any>(storedUser || "");
-  const [userEmail, setUserEmail] = useState<any>(storedUser || "");
+  const [user, setUser] = useState<User | null>(
+    storedUser ? JSON.parse(storedUser) : null
+  );
   const [isAuth, setIsAuth] = useState<boolean>(storedIsAuth === "true");
   const [errors, setErrors] = useState<string[]>([]);
 
-  const signIn = async (data: any) => {
+  const signIn = async (data: FormData) => {
     try {
       const res = await loginRequest(data);
-      console.log(res.data);
+      console.log(`res`, res);
+      console.log(`res.data`, res.data);
 
-      setUser(res.data.nombre);
-      setUserEmail(res.data.email);
+      setUser(res.data);
       setIsAuth(true);
 
-      localStorage.setItem("user", res.data.nombre);
+      localStorage.setItem("user", JSON.stringify(res.data.nombre));
       localStorage.setItem("isAuth", "true");
 
       return res.data.nombre;
@@ -33,7 +35,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         user,
-        userEmail,
         isAuth,
         errors,
         signIn,
