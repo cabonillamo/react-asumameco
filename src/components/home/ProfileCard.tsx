@@ -17,11 +17,14 @@ function ProfileCard({ user }: { user: User | null }) {
         <Link to="/profile" className="flex gap-2">
           <img
             src={NoProfile}
-            alt={user?.nombre?.charAt(0) || "U"}
+            alt={user.nombre.charAt(0) || "U"}
             className="w-14 h-14 object-cover rounded-full"
           />
           <div className="flex flex-col justify-center">
-            <p className="text-lg font-medium text-ascent-1">{user.nombre}</p>
+            <p className="text-lg font-medium text-ascent-1">
+              {user.nombre}
+              {user.apellidos}
+            </p>
             <span className="text-ascent-2">{user.email}</span>
           </div>
         </Link>
