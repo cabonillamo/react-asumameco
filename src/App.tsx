@@ -2,6 +2,7 @@ import LandingPage from "./pages/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
 import Home from "./pages/HomePage";
+import Profile from "./pages/Profile";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
@@ -19,6 +20,12 @@ function App(): JSX.Element {
           element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/home" />}
         >
           <Route path="/auth" element={<LoginPage />} />
+          
+        </Route>
+        <Route
+          element={<ProtectedRoute isAllowed={isAuth} redirectTo="/auth" />}
+        >
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         {/* no logueado */}
