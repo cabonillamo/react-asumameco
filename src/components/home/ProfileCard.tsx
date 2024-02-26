@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { User } from "../../interfaces/context/auth/user";
 import { NoProfile } from "../../assets/home";
+import { useAuth } from "../../hooks/useAuth";
+import { LiaEditSolid } from "react-icons/lia";
+import EditProfile from "./EditProfile";
 
 function ProfileCard({ user }: { user: User | null }) {
+  const { user: data } = useAuth();
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
   if (!user) {
     return (
       <div className="w-full bg-primary flex flex-col items-center shadow-sm rounded-xl px-6 py-4">
@@ -28,7 +36,20 @@ function ProfileCard({ user }: { user: User | null }) {
             <span className="text-ascent-2">{user.email}</span>
           </div>
         </Link>
+        <div>
+          {user.id === data?.id ? (
+            <LiaEditSolid
+              size={22}
+              className="text-blue cursor-pointer"
+              onClick={openModal}
+            />
+          ) : (
+            ""
+          )}
+        </div>
       </div>
+
+      {isModalOpen && <EditProfile />}
     </div>
   );
 }
