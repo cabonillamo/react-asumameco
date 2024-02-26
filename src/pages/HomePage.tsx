@@ -6,7 +6,10 @@ function Home() {
   const { user, isAuth } = useAuth();
   const navigate = useNavigate();
 
-  if (!isAuth) return navigate("/login");
+  if (!isAuth) {
+    navigate("/login");
+    return null;
+  }
 
   return (
     <>
