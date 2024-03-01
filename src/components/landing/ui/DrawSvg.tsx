@@ -45,21 +45,23 @@ const Ball = styled.div`
 `;
 
 function DrawSvg() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
 
   gsap.registerPlugin(ScrollTrigger);
-  useLayoutEffect(() => {
-    let element = ref.current;
 
-    let svg = document.getElementsByClassName("svg-path")[0] as SVGPathElement;
+  useLayoutEffect(() => {
+    const element = ref.current;
+
+    const svg = document.getElementsByClassName(
+      "svg-path"
+    )[0] as SVGPathElement;
     const length = svg.getTotalLength();
 
     svg.style.strokeDasharray = `${length}`;
     svg.style.strokeDashoffset = `${length}`;
 
-    let t1: gsap.core.Timeline;
-    t1 = gsap.timeline({
+    const t1: gsap.core.Timeline = gsap.timeline({
       scrollTrigger: {
         trigger: element,
         start: "top center",
@@ -69,22 +71,23 @@ function DrawSvg() {
           svg.style.strokeDashoffset = `${length - draw}`;
         },
         onToggle: (self) => {
-          if (self.isActive)
+          if (self.isActive) {
             if (ballRef.current) {
               ballRef.current.style.display = "none";
-            } else {
-              if (ballRef.current) {
-                (ballRef.current as HTMLDivElement).style.display =
-                  "inline-block";
-              }
             }
+          } else {
+            if (ballRef.current) {
+              ballRef.current.style.display = "inline-block";
+            }
+          }
         },
       },
     });
+
     return () => {
       if (t1) t1.kill();
     };
-  });
+  }, []);
 
   return (
     <>

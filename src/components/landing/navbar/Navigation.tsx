@@ -12,7 +12,7 @@ import {
 function Navigation() {
   const [click, setClick] = useState<boolean>(false);
   const scrollTo = (id: string) => {
-    let element = document.getElementById(id);
+    const element = document.getElementById(id);
     element?.scrollIntoView({
       behavior: "smooth",
       block: "start",

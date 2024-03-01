@@ -205,7 +205,7 @@ function Guide() {
   };
 
   useLayoutEffect(() => {
-    let t1 = gsap.timeline();
+    const t1 = gsap.timeline();
     revealRefs.current.forEach((el: never, index: number) => {
       t1.fromTo(
         (el as HTMLElement).childNodes[0],

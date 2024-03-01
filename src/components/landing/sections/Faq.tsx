@@ -66,7 +66,7 @@ function Faq() {
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
-    let element = ref.current;
+    const element = ref.current;
     ScrollTrigger.create({
       trigger: element,
       start: "top top",

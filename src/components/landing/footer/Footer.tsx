@@ -95,7 +95,7 @@ const Bottom = styled.div`
 
 function Footer() {
   const scrollTo = (id: string) => {
-    let element = document.getElementById(id);
+    const element = document.getElementById(id);
     element?.scrollIntoView({
       behavior: "smooth",
       block: "start",
