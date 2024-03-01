@@ -5,5 +5,8 @@ export interface User {
   email: string;
   clave: string;
   idRol: number;
-  idRolNavigation: any;
+  idRolNavigation: {
+    id: number;
+    nombre: string;
+  };
 }

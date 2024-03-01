@@ -1,14 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Logo from "../../icons/landing/Logo";
 import { BsMoon, BsSunFill } from "react-icons/bs";
 import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
 import { CustomButton } from ".";
 import { useAuth } from "../../hooks/useAuth";
+import Logo from "../../icons/landing/Logo";
+import { RootState } from "../../interfaces/redux/rootState";
 
 function TopBar() {
-  const { theme } = useSelector((state: any) => state.theme);
+  const { theme } = useSelector((state: RootState) => state.theme);
   const dispatch: Dispatch<ThemeAction> = useDispatch();
   const { signOut } = useAuth();
 

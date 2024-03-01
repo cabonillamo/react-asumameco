@@ -7,10 +7,11 @@ import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import { useSelector } from "react-redux";
+import { RootState } from "./interfaces/redux/rootState";
 
 function App(): JSX.Element {
   const { isAuth } = useAuth();
-  const { theme } = useSelector((state: any) => state.theme);
+  const { theme } = useSelector((state: RootState) => state.theme);
 
   return (
     <div data-theme={theme}>
@@ -20,7 +21,6 @@ function App(): JSX.Element {
           element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/home" />}
         >
           <Route path="/auth" element={<LoginPage />} />
-          
         </Route>
         <Route
           element={<ProtectedRoute isAllowed={isAuth} redirectTo="/auth" />}

@@ -4,7 +4,7 @@ export interface TextInputProps {
   styles?: string;
   label?: string;
   labelStyles?: string;
-  register?: any;
+  register?: string;
   name?: string;
-  error?: any;
+  error?: string;
 }

@@ -3,5 +3,5 @@ export interface CustomButtonProps {
   containerStyles?: string;
   iconRight?: boolean;
   type?: string;
-  onClick?: any;
+  onClick?: () => void;
 }

@@ -1,3 +1,4 @@
+import { FormEvent } from "react";
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -15,7 +16,7 @@ function FormSigninComponent({
   children,
   className,
 }: {
-  onSubmit: any;
+  onSubmit: (event: FormEvent) => void;
   children: React.ReactNode;
   className: string;
 }) {
@@ -31,7 +32,7 @@ function FormSignupComponent({
   children,
   className,
 }: {
-  onSubmit?: any;
+  onSubmit?: (event: FormEvent) => void;
   children: React.ReactNode;
   className: string;
 }) {
