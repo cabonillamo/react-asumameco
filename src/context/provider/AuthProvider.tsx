@@ -1,5 +1,11 @@
 import { AuthContext } from "../AuthContext";
-import { loginRequest, signOutRequest, meRequest } from "../../api/auth.api";
+import {
+  loginRequest,
+  signOutRequest,
+  meRequest,
+  resetPasswordRequest,
+  changePasswordRequest,
+} from "../../api/auth.api";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/context/auth/user";
 import Cookie from "js-cookie";
@@ -9,6 +15,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
 
   const signIn = async (data: FormData) => {
     try {
@@ -48,7 +55,39 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error(error);
     }
   };
+  const resetPassword = async (email: string) => {
+    try {
+      await resetPasswordRequest(email);
+      setErrors([]);
+      setIsEmailValid(true);
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        if (Array.isArray(error.response.data)) setErrors(error.response.data);
+        else setErrors([error.response.data]);
 
+        setIsEmailValid(false);
+      }
+    }
+  };
+
+  const changePassword = async (
+    email: string,
+    resetToken: string,
+    newPassword: string
+  ) => {
+    try {
+      console.log(email, resetToken, newPassword);
+      await changePasswordRequest(email, resetToken, newPassword);
+      console.log("Contraseña cambiada exitosamente");
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        if (Array.isArray(error.response.data)) setErrors(error.response.data);
+        else setErrors([error.response.data]);
+      } else console.error("Error al cambiar la contraseña:", error);
+    }
+  };
+
+  useEffect(() => {}, [isEmailValid]);
   useEffect(() => {
     const token = Cookie.get("token");
     if (token) {
@@ -57,8 +96,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setUser(res);
           setIsAuth(true);
         })
-        .catch((error) => {
-          console.error("Error response:", error.response);
+        .catch((_) => {
           setUser(null);
           setIsAuth(false);
         });
@@ -71,8 +109,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         user,
         isAuth,
         errors,
+        isEmailValid,
         signIn,
         signOut,
+        resetPassword,
+        changePassword,
       }}
     >
       {children}
