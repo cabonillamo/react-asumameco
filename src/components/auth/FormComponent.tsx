@@ -15,7 +15,9 @@ import {
   InputComponent,
   FormSigninComponent,
   FormSignupComponent,
+  ForgotPasswordCard,
 } from "./";
+import "./forgotPasswordCard.css";
 
 function FormComponent() {
   const {
@@ -23,19 +25,29 @@ function FormComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const { signIn, errors: loginErrors } = useAuth();
   const navigate = useNavigate();
 
   const [click, setClick] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
+
   const handleClick = () => setClick(!click);
 
   const onSubmit = handleSubmit(async (data) => {
-    const user = await signIn(data);
-    if (user) navigate("/home");
+    if (forgotPassword) {
+      // TODO : make a better way to handle this
+      console.log("Restablecer contraseña:", data);
+    } else {
+      const user = await signIn(data);
+      if (user) navigate("/home");
+    }
   });
 
   return (
     <>
+      {forgotPassword && <div className="blur-background"></div>}
+
       <BackgroundBoxComponent clicked={click}>
         <ButtonAnimateComponent clicked={click} onClick={handleClick} />
         <FormSigninComponent onSubmit={onSubmit} className="signin">
@@ -63,10 +75,13 @@ function FormComponent() {
             placeholder="Password"
             {...register("clave", { required: true })}
           />
-          <LinkComponent href="#">Forgot Your Password?</LinkComponent>
+
+          <LinkComponent href="#" onClick={() => setForgotPassword(true)}>
+            Forgot Your Password?
+          </LinkComponent>
+
           <ButtonComponent>Sign In</ButtonComponent>
         </FormSigninComponent>
-
         <FormSignupComponent className="signup">
           <TitleComponent>Pre Register</TitleComponent>
           <InputComponent
@@ -93,7 +108,6 @@ function FormComponent() {
           </LinkComponent>
           <ButtonComponent>Pre Register</ButtonComponent>
         </FormSignupComponent>
-
         <TextComponentOne className="text1" clicked={click}>
           <h1>Welcome!</h1>
           Don't have an account?
@@ -101,7 +115,6 @@ function FormComponent() {
           <span className="attention">Click Me</span>
           <span className="attention-icon">⤶</span>
         </TextComponentOne>
-
         <TextComponentTwo className="text2" clicked={click}>
           <h1>Hi There!</h1>
           Already have an account?
@@ -109,7 +122,9 @@ function FormComponent() {
           <span className="attention">Click Me</span>
           <span className="attention-icon">⤷</span>
         </TextComponentTwo>
-
+        {forgotPassword && (
+          <ForgotPasswordCard onCancel={() => setForgotPassword(false)} />
+        )}
         <Box1Component1 clicked={click} />
         <Box1Component2 clicked={click} />
       </BackgroundBoxComponent>
