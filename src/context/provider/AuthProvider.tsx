@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setUser(res);
           setIsAuth(true);
         })
-        .catch((_) => {
+        .catch(() => {
           setUser(null);
           setIsAuth(false);
         });
