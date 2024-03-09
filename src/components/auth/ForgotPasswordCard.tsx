@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./ForgotPasswordCard.css";
 import { ForgotPasswordCardProps } from "../../interfaces/ui/forgotPasswordCardProps";
 import { useAuth } from "../../hooks/useAuth";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
@@ -29,8 +29,7 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
     }
   }, [isEmailValid, currentStep]);
 
-  // TODO : add type for data
-  const handleNext = async (data: any) => {
+  const handleNext = async (data: FieldValues) => {
     if (currentStep === 1) await resetPassword(data.email);
     else if (currentStep === 2) setCurrentStep(currentStep + 1);
     else if (currentStep === 3) {
