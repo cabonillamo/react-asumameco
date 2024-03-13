@@ -140,11 +140,11 @@ function Banner() {
       </ImgContainer>
 
       <Title>
-        Join the <br /> Association
+        Únete a <br /> la Asociación
       </Title>
       <ButtonContainer>
         <Link to="/auth">
-          <JoinNow>Join Now</JoinNow>
+          <JoinNow>Únete ahora</JoinNow>
         </Link>
       </ButtonContainer>
     </Section>

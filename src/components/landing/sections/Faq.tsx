@@ -83,40 +83,34 @@ function Faq() {
 
   return (
     <Section id="faq" ref={ref}>
-      <Title>Frequently Asked Questions</Title>
+      <Title>Preguntas Frecuentes</Title>
       <Container>
         <Box>
-          <Accordion title="Is there a cost associated with the service?">
-            No, our service is completely free of charge. We believe in
-            providing valuable information and assistance without any financial
-            burden on our users.
+          <Accordion title="¿Hay algún costo asociado con el servicio?">
+          No, nuestro servicio es completamente gratuito.
+          Creemos en proporcionar información y asistencia valiosas sin ningún costo 
+          financiero para nuestros usuarios.
           </Accordion>
-          <Accordion title="How do I get started with your platform?">
-            To get started, simply create an account on our platform by
-            providing the required information. Once registered, you will have
-            access to a variety of features.
+          <Accordion title="¿Cómo puedo empezar con su plataforma?">
+          Para empezar, simplemente crea una cuenta en nuestra plataforma 
+          proporcionando la información requerida. 
+          Una vez registrado, tendrás acceso a una variedad de funciones.
           </Accordion>
-          <Accordion title="Are there any membership fees or hidden charges?">
-            We are committed to transparency. There are no hidden charges or
-            membership fees associated with our platform. All relevant costs, if
-            any, will be clearly communicated to you.
+          <Accordion title="¿Existen tarifas de membresía o cargos ocultos?">
+          Estamos comprometidos con la transparencia. No hay cargos ocultos 
+          ni tarifas de membresía asociadas con nuestra plataforma. 
+          Todos los costos relevantes, si los hubiera, se te comunicarán claramente.
           </Accordion>
         </Box>
         <Box>
-          <Accordion title="How do I reset my password?">
-            If you've forgotten your password, you can easily reset it by
-            clicking on the 'Forgot Password' link on the login page.
+          <Accordion title="¿Cómo puedo restablecer mi contraseña?">
+          Si has olvidado tu contraseña, puedes restablecerla fácilmente haciendo clic en el enlace '¿Olvidaste tu contraseña?' en la página de inicio de sesión.
           </Accordion>
-          <Accordion title="How secure is my personal information on your platform?">
-            We prioritize the security of your information. Our platform employs
-            advanced security measures to protect your personal data, ensuring a
-            safe and secure user experience.
+          <Accordion title="¿Qué tan segura está mi información personal en su plataforma?">
+          Priorizamos la seguridad de tu información. Nuestra plataforma utiliza medidas de seguridad avanzadas para proteger tus datos personales, garantizando una experiencia de usuario segura y protegida.
           </Accordion>
-          <Accordion title="What browsers are supported by your platform?">
-            Our platform is optimized for use with the latest versions of
-            popular browsers such as Google Chrome, Mozilla Firefox, Safari, and
-            Microsoft Edge. Ensure your browser is up-to-date for the best
-            experience.
+          <Accordion title="¿Qué navegadores son compatibles con su plataforma?">
+          Nuestra plataforma está optimizada para su uso con las últimas versiones de navegadores populares como Google Chrome, Mozilla Firefox, Safari y Microsoft Edge. Asegúrate de que tu navegador esté actualizado para obtener la mejor experiencia.
           </Accordion>
         </Box>
       </Container>

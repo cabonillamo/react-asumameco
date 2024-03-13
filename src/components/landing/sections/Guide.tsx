@@ -230,7 +230,7 @@ function Guide() {
 
   return (
     <Section id="guide">
-      <Title>How it works</Title>
+      <Title>Cómo fucniona</Title>
       <Container>
         <SvgContainer>
           <DrawSvg />
@@ -239,27 +239,27 @@ function Guide() {
           <Item>&nbsp;</Item>
           <GuideItem
             addRef={addToRefs}
-            title="Pre-register"
+            title="Pre-registro"
             subText="Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. At Repellat Placeat, Adipisicing Elit. At Repellat Placeat."
           />
           <GuideItem
             addRef={addToRefs}
-            title="Wait to be accepted"
+            title="Espera a ser aceptado"
             subText="Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. At Repellat Placeat, Adipisicing Elit. At Repellat Placeat."
           />
           <GuideItem
             addRef={addToRefs}
-            title="Join the community"
+            title="Únete a la comunidad"
             subText="Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. At Repellat Placeat, Adipisicing Elit. At Repellat Placeat."
           />
           <GuideItem
             addRef={addToRefs}
-            title="Participate in events"
+            title="Participa en eventos"
             subText="Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. At Repellat Placeat, Adipisicing Elit. At Repellat Placeat."
           />
           <GuideItem
             addRef={addToRefs}
-            title="Get rewards"
+            title="Obtén recompensas"
             subText="Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. At Repellat Placeat, Adipisicing Elit. At Repellat Placeat."
           />
         </Items>

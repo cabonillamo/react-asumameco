@@ -147,16 +147,15 @@ function About() {
         </Box>
         <Box>
           <Title>
-            Welcome to the <br /> best association hub
+            Bienvenido al <br /> mejor centro de asociaciones
           </Title>
           <SubText>
-            This software is designed to help you manage your association with
-            ease
+          Este software está diseñado para ayudarte a gestionar tu asociación con facilidad.
           </SubText>
-          <SubTextLight>You can manage your members and events</SubTextLight>
+          <SubTextLight>Puedes gestionar tus miembros y eventos.</SubTextLight>
           <ButtonContainer>
             <ThemeProvider theme={dark}>
-              <Button text="Join Now!" to="/auth" />
+              <Button text="¡Únete ahora!" to="/auth" />
             </ThemeProvider>
           </ButtonContainer>
         </Box>

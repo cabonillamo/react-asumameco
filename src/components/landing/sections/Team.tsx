@@ -129,7 +129,7 @@ function Team() {
   return (
     <Section id="team">
       <ConfettiComponent />
-      <Title>Team</Title>
+      <Title>Equipo de Trabajo</Title>
       <Container>
         <MemberComponent
           img={img1}

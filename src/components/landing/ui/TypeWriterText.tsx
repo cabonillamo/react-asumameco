@@ -76,7 +76,7 @@ function TypeWriterText() {
   return (
     <>
       <Title>
-        Our Association Hub
+        Nuestro centro de Asociación
         <Typewriter
           options={{
             autoStart: true,
@@ -84,22 +84,22 @@ function TypeWriterText() {
           }}
           onInit={(typewriter) => {
             typewriter
-              .typeString('<span class="text-1">World Vision</span>')
+              .typeString('<span class="text-1">Visión Mundial</span>')
               .pauseFor(2000)
               .deleteAll()
-              .typeString('<span class="text-2">Global Mission</span>')
+              .typeString('<span class="text-2">Misión Mundial</span>')
               .pauseFor(2000)
               .deleteAll()
-              .typeString('<span class="text-3">Worldwide Community</span>')
+              .typeString('<span class="text-3">Comunidad Mundial</span>')
               .pauseFor(2000)
               .deleteAll()
               .start();
           }}
         />
       </Title>
-      <Subtitle>Join us today</Subtitle>
+      <Subtitle>Únete a nosotros hoy</Subtitle>
       <ButtonContainer>
-          <Button text="Get Started" to="/auth" />
+          <Button text="Empezar" to="/auth" />
       </ButtonContainer>
     </>
   );

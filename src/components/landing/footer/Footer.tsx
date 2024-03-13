@@ -110,16 +110,16 @@ function Footer() {
           <Logo />
         </Left>
         <MenuItems>
-          <Item onClick={() => scrollTo("home")}>Home</Item>
-          <Item onClick={() => scrollTo("about")}>About</Item>
-          <Item onClick={() => scrollTo("guide")}>Guide</Item>
-          <Item onClick={() => scrollTo("team")}>Team</Item>
-          <Item onClick={() => scrollTo("faq")}>Faq</Item>
+          <Item onClick={() => scrollTo("home")}>Inicio</Item>
+          <Item onClick={() => scrollTo("about")}>Acerca de</Item>
+          <Item onClick={() => scrollTo("guide")}>Guia</Item>
+          <Item onClick={() => scrollTo("team")}>Equipo</Item>
+          <Item onClick={() => scrollTo("faq")}>Preguntas Frecuentes</Item>
         </MenuItems>
       </Container>
       <Bottom>
         <span>
-          &copy; {new Date().getFullYear()} Q-Easy. All rights reserved.
+          &copy; {new Date().getFullYear()} Q-Easy. Todos los derechos Reservados.
         </span>
       </Bottom>
     </Section>

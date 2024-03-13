@@ -34,28 +34,28 @@ function Navigation() {
 
         <MenuComponent click={click}>
           <MenuItemComponent onClick={() => scrollTo("home")}>
-            Home
+            Inicio
           </MenuItemComponent>
           <MenuItemComponent onClick={() => scrollTo("about")}>
-            About
+            Acerca de
           </MenuItemComponent>
           <MenuItemComponent onClick={() => scrollTo("guide")}>
-            Guide
+            Guia
           </MenuItemComponent>
           <MenuItemComponent onClick={() => scrollTo("team")}>
-            Team
+            Equipo
           </MenuItemComponent>
           <MenuItemComponent onClick={() => scrollTo("faq")}>
-            Faq
+            Preguntas Frecuentes
           </MenuItemComponent>
           <MenuItemComponent>
             <div className="mobile">
-              <Button text="Sign In" to="/auth" />
+              <Button text="Iniciar sesión" to="/auth" />
             </div>
           </MenuItemComponent>
         </MenuComponent>
         <div className="desktop">
-          <Button text="Sign In" to="/auth" />
+          <Button text="Iniciar sesión" to="/auth" />
         </div>
       </NavBarComponent>
     </SectionComponent>
