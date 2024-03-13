@@ -1,4 +1,4 @@
-import Logo from "../../../icons/landing/Logo";
+
 import { Button } from "../ui";
 import { useState } from "react";
 import {
@@ -8,6 +8,20 @@ import {
   MenuComponent,
   MenuItemComponent,
 } from ".";
+
+import logo from "../../../assets/landing/Logo.jpg";
+import styled from 'styled-components';
+
+const ImageContainer = styled.div`
+ width: 100px;
+ height: 100px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-right: 1rem;
+
+`;
+
 
 function Navigation() {
   const [click, setClick] = useState<boolean>(false);
@@ -24,7 +38,9 @@ function Navigation() {
   return (
     <SectionComponent id="navigation">
       <NavBarComponent>
-        <Logo />
+      <ImageContainer>
+        <img src={logo} alt="logo" />
+        </ImageContainer>
         <HamburgerComponent
           click={click}
           setClick={() => setClick(!click)}
