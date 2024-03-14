@@ -1,3 +1,5 @@
+// import FormComponent from "../components/auth/FormComponent";
+
 import { MdFamilyRestroom } from "react-icons/md";
 import { TextInput, CustomButton } from "../components/auth";
 import { useForm } from "react-hook-form";
@@ -7,10 +9,11 @@ import { BsShare } from "react-icons/bs";
 import { AiOutlineInteraction } from "react-icons/ai";
 import { ImConnection } from "react-icons/im";
 
-function LoginPage() {
+function RegisterPage() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -19,7 +22,7 @@ function LoginPage() {
   const onsubmit = async () => {};
   return (
     <div className="bg-bgColor w-full h-[100vh] flex items-center justify-center p-6">
-      <div className="w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex bg-primary rounded-xl overflow-hidden shadow-xl">
+      <div className="w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex  flex-row-reverse bg-primary rounded-xl overflow-hidden shadow-xl">
         {/* left */}
         <div className="w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center">
           <div className="w-full flex gap-2 items-center mb-6">
@@ -31,15 +34,39 @@ function LoginPage() {
             </span>
           </div>
           <p className="text-ascent-1 text-base font-semibold">
-            Ingresa con tu cuenta
+            Haz el pre-registro
           </p>
-          <span className="text-sm mt-2 text-ascent-2">
-            Bienviendo de vuelta
-          </span>
+
           <form
             className="py-8 flex flex-col gap-5"
             onSubmit={handleSubmit(onsubmit)}
           >
+            <div className="w-full flex flex-col lg:flex-row gap-1 md:gap-2">
+              <TextInput
+                name="name"
+                placeholder="Nombre"
+                label="Nombre"
+                type="text"
+                styles="w-full"
+                register={register("name", {
+                  required: "El nombre es requerido",
+                })}
+                error={errors.name ? errors.name.message : ""}
+              />
+
+              <TextInput
+                name="lastname"
+                placeholder="Apellido"
+                label="Apellido"
+                type="text"
+                register={register("lastname", {
+                  required: "El apellido es requerido",
+                })}
+                styles="w-full"
+                error={errors.lastname ? errors.lastname.message : ""}
+              />
+            </div>
+
             <TextInput
               name="email"
               placeholder="Correo electrónico"
@@ -48,10 +75,10 @@ function LoginPage() {
               register={register("email", {
                 required: "El correo es requerido",
               })}
-              styles="w-full rounded-full"
-              labelStyles="ml-2"
+              styles="w-full"
               error={errors.email ? errors.email.message : ""}
             />
+
             <TextInput
               name="password"
               label="Contraseña"
@@ -65,26 +92,38 @@ function LoginPage() {
               error={errors.password ? errors.password.message : ""}
             />
 
-            <Link
-              to="/forgot-password"
-              className="text-sm text-right text-blue font-semibold "
-            >
-              Olvidaste tu contraseña?
-            </Link>
+            <TextInput
+              name="confirmPassword"
+              label="Confirmar contraseña"
+              placeholder="Confirmar contraseña"
+              type="password"
+              styles="w-full rounded-full"
+              labelStyles="ml-2"
+              register={register("confirmPassword", {
+                required: "La contraseña es requerida",
+                validate: (value) => {
+                  const { password } = getValues();
+                  if (password != value) return "Las contraseñas no coinciden";
+                },
+              })}
+              error={
+                errors.confirmPassword ? errors.confirmPassword.message : ""
+              }
+            />
 
             <CustomButton
               type="submit"
               containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
-              title="Iniciar sesión"
+              title="Pre-Registrarse"
             />
           </form>
           <p className="text-ascent-2 text-sm text-center">
-            ¿No tienes una cuenta?
+            ¿Ya tienes una cuenta?
             <Link
-              to="/register"
+              to="/auth"
               className="text-[#065ad8] font-semibold ml-2 cursor-pointer"
             >
-              Pre-regístrate
+              Inicia sesión
             </Link>
           </p>
         </div>
@@ -125,4 +164,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

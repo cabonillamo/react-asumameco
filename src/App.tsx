@@ -1,6 +1,7 @@
 import LandingPage from "./pages/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import Home from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
@@ -21,6 +22,7 @@ function App(): JSX.Element {
           element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/home" />}
         >
           <Route path="/auth" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
         <Route
           element={<ProtectedRoute isAllowed={isAuth} redirectTo="/auth" />}

@@ -8,6 +8,8 @@ import { Box1Component1, Box1Component2 } from "./Box1";
 import { InputComponent } from "./Input";
 import { FormSigninComponent, FormSignupComponent } from "./Form";
 import ForgotPasswordCard from "./ForgotPasswordCard";
+import TextInput from "./TextInput";
+import { CustomButton } from "../home";
 
 export {
   BackgroundBoxComponent,
@@ -23,4 +25,6 @@ export {
   FormSigninComponent,
   FormSignupComponent,
   ForgotPasswordCard,
+  TextInput,
+  CustomButton,
 };
