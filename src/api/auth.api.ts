@@ -64,3 +64,13 @@ export const changePasswordRequest = async (
     throw error;
   }
 };
+
+export const preRegistrationRequest = async (formData: FormData) => {
+  try {
+    const response = await client.post("usuario/Preregistration", formData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

@@ -5,6 +5,7 @@ import {
   meRequest,
   resetPasswordRequest,
   changePasswordRequest,
+  preRegistrationRequest,
 } from "../../api/auth.api";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/context/auth/user";
@@ -87,6 +88,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const preRegister = async (data: FormData) => {
+    try {
+      return await preRegistrationRequest(data);
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        if (Array.isArray(error.response.data)) {
+          setErrors(error.response.data);
+        } else {
+          setErrors([error.response.data]);
+        }
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
   useEffect(() => {}, [isEmailValid]);
   useEffect(() => {
     const token = Cookie.get("token");
@@ -114,6 +131,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         signOut,
         resetPassword,
         changePassword,
+        preRegister,
       }}
     >
       {children}

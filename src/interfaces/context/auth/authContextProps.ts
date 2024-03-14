@@ -13,4 +13,5 @@ export interface authContextProps {
     newPassword: string,
     token: string
   ) => Promise<void>;
+  preRegister: (data: FormData) => Promise<{ message: string }>;
 }
