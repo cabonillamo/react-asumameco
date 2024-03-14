@@ -5,7 +5,7 @@ export interface authContextProps {
   isAuth: boolean;
   errors: string[];
   isEmailValid: boolean;
-  signIn: (data: FormData) => Promise<void>;
+  signIn: (data: FormData) => Promise<User | null>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   changePassword: (
