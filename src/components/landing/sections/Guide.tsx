@@ -122,7 +122,7 @@ const Item = styled.li`
   width: 100%;
   height: 100%;
   display: flex;
-
+ 
   @media (max-width: 48em) {
     justify-content: flex-end !important;
   }
@@ -133,7 +133,7 @@ const ItemContainer = styled.div`
   height: fit-content;
   padding: 1rem;
   border: 3px solid ${(props) => props.theme.text};
-
+  background-color: #e4872c;
   @media (max-width: 48em) {
     width: 70%;
   }

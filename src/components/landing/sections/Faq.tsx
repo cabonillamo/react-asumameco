@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 const Section = styled.section`
   min-height: 100vh;
   width: auto;
-  background-color: ${(props) => props.theme.text};
+  background-color: #07305d;
   position: relative;
   color: ${(props) => props.theme.body};
 

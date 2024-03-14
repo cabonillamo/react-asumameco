@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Btn = styled.button`
   display: inline-block;
-  background-color: ${(props) => props.theme.text};
+  background-color: #e4872c;
   color: ${(props) => props.theme.body};
   outline: none;
   border: none;

@@ -39,6 +39,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
 const Round = styled.div`
@@ -47,6 +48,7 @@ const Round = styled.div`
   right: 90%;
   width: 6rem;
   height: 6rem;
+  
 
   li {
     width: 100%;
@@ -78,7 +80,7 @@ const Circle = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${(props) => props.theme.text};
+  background-color: #e4872c;
   color: ${(props) => props.theme.body};
   font-size: ${(props) => props.theme.fontxl};
 

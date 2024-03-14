@@ -99,7 +99,7 @@ function TypeWriterText() {
       </Title>
       <Subtitle>Únete a nosotros hoy</Subtitle>
       <ButtonContainer>
-          <Button text="Empezar" to="/auth" />
+          <Button text="Empezar" to="/register" />
       </ButtonContainer>
     </>
   );

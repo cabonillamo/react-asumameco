@@ -23,10 +23,10 @@ function LoginPage() {
         {/* left */}
         <div className="w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center">
           <div className="w-full flex gap-2 items-center mb-6">
-            <div className="p-2 bg-[#065ad8] rounded text-white">
+            <div className="p-2 bg-[#07305d] rounded text-white">
               <MdFamilyRestroom />
             </div>
-            <span className="text-2xl text-[#065ad8] font-semibold">
+            <span className="text-2xl text-[#07305d] font-semibold">
               Asomameco
             </span>
           </div>
@@ -67,14 +67,14 @@ function LoginPage() {
 
             <Link
               to="/forgot-password"
-              className="text-sm text-right text-blue font-semibold "
+              className="text-sm text-right text-[#0b488c] font-semibold "
             >
               Olvidaste tu contraseña?
             </Link>
 
             <CustomButton
               type="submit"
-              containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
+              containerStyles={`inline-flex justify-center rounded-md bg-[#e4872c] px-8 py-3 text-sm font-medium text-white outline-none`}
               title="Iniciar sesión"
             />
           </form>
@@ -82,14 +82,14 @@ function LoginPage() {
             ¿No tienes una cuenta?
             <Link
               to="/register"
-              className="text-[#065ad8] font-semibold ml-2 cursor-pointer"
+              className="text-[#0b488c] font-semibold ml-2 cursor-pointer"
             >
               Pre-regístrate
             </Link>
           </p>
         </div>
         {/*  right */}
-        <div className="w-full lg:w-1/2 h-full lg:flex flex-col items-center justify-center bg-blue hidden">
+        <div className="w-full lg:w-1/2 h-full lg:flex flex-col items-center justify-center bg-[#07305d] hidden">
           <div className="relative w-full flex items-center justify-center">
             <img
               src={Logo}
@@ -114,7 +114,7 @@ function LoginPage() {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-white text-base">ASUMAMECO</p>
+            <p className="text-white text-base">ASOMAMECO</p>
             <span className="text-sm text-white/80">
               Asociación de Maridos a Mecate Corto
             </span>

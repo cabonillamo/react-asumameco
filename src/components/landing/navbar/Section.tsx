@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Section = styled.section`
   width: 100vw;
+  height: 17vh;
   background-color: ${(props) => props.theme.body};
 `;
 

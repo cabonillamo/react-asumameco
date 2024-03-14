@@ -5,7 +5,7 @@ import { dark } from "../../../styles/Theme";
 const Section = styled.section`
   min-height: 100vh;
   width: 100%;
-  background-color: ${(props) => props.theme.text};
+  background-color: #07305d;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,7 +155,7 @@ function About() {
           <SubTextLight>Puedes gestionar tus miembros y eventos.</SubTextLight>
           <ButtonContainer>
             <ThemeProvider theme={dark}>
-              <Button text="¡Únete ahora!" to="/auth" />
+              <Button text="¡Únete ahora!" to="/register" />
             </ThemeProvider>
           </ButtonContainer>
         </Box>
