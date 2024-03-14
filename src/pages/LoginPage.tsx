@@ -119,7 +119,7 @@ function LoginPage() {
               <img
                 src={Logo}
                 alt="convenios"
-                className="w-48 2xl:w64 h-48 2xl:h-64 rounded-full object-cover"
+                className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover object-center"
               />
 
               <div className="absolute flex items-center gap-1 bg-white right-10 top-10 py-2 px-5 rounded-full">

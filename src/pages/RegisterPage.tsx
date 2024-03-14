@@ -133,9 +133,8 @@ function RegisterPage() {
             <img
               src={Logo}
               alt="convenios"
-              className="w-48 2xl:w64 h-48 2xl:h-64 rounded-full object-cover"
+              className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover object-center"
             />
-
             <div className="absolute flex items-center gap-1 bg-white right-10 top-10 py-2 px-5 rounded-full">
               <BsShare size={14} />
               <span className="text-sm font-medium">Comparte</span>
@@ -155,7 +154,7 @@ function RegisterPage() {
           <div className="mt-16 text-center">
             <p className="text-white text-base">ASUMAMECO</p>
             <span className="text-sm text-white/80">
-            Asociación de Maridos a Mecate Corto
+              Asociación de Maridos a Mecate Corto
             </span>
           </div>
         </div>
