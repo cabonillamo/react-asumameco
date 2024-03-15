@@ -1,4 +1,3 @@
-
 import { Button } from "../ui";
 import { useState } from "react";
 import {
@@ -8,39 +7,26 @@ import {
   MenuComponent,
   MenuItemComponent,
 } from ".";
-
 import logo from "../../../assets/landing/Logo.jpg";
-import styled from 'styled-components';
-
-
+import styled from "styled-components";
 
 const ImageContainer = styled.img`
-  width: 130px;
-  height: 130px; /* Ajusta la altura para que sea igual al ancho */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 80px;
+  height: 80px;
   margin-right: 1rem;
-  margin-top: 5.2rem;
-  border-radius: 50%; /* Cambia el radio del borde a 50% para hacerlo redondo */
-  background-color: #f0f0f0; /* Cambia el color de fondo */
-  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3); /* Ajusta la sombra */
-  transition: all 0.3s ease; /* Agrega una transición suave */
-  
-  /* Efecto al pasar el ratón */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+
   &:hover {
-    transform: scale(1.05); /* Hace que el logo se agrande un poco al pasar el ratón */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta el tamaño de la sombra */
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
-
-
-// Puedes modificar los valores de los colores y las sombras según tus preferencias.
-
-
-// Puedes modificar los valores de los colores y las sombras según tus preferencias.
-
-
 
 function Navigation() {
   const [click, setClick] = useState<boolean>(false);
@@ -57,11 +43,8 @@ function Navigation() {
   return (
     <SectionComponent id="navigation">
       <NavBarComponent>
-      <ImageContainer src={logo} alt="logo" />
-        <HamburgerComponent
-          click={click}
-          setClick={() => setClick(!click)}
-        >
+        <ImageContainer src={logo} alt="logo" />
+        <HamburgerComponent click={click} setClick={() => setClick(!click)}>
           &nbsp;
         </HamburgerComponent>
 
