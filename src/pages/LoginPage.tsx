@@ -16,6 +16,11 @@ import { useEffect, useState } from "react";
 import "../components/auth/forgotPasswordCard.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../interfaces/redux/rootState";
+import { ThemeAction, setTheme } from "../redux/slice/theme/theme";
+import { Dispatch } from "@reduxjs/toolkit";
+import { BsMoon, BsSunFill } from "react-icons/bs";
 
 function LoginPage() {
   const {
@@ -23,13 +28,15 @@ function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { theme } = useSelector((state: RootState) => state.theme);
+  const dispatch: Dispatch<ThemeAction> = useDispatch();
   const [forgotPassword, setForgotPassword] = useState(false);
 
   const { signIn, errors: loginErrors } = useAuth();
   const navigate = useNavigate();
 
   // !TODO: type FormData
-  const onsubmit = handleSubmit(async (data) => {
+  const onsubmit = handleSubmit(async (data: any) => {
     const user = await signIn(data);
     if (user) {
       navigate("/home");
@@ -40,6 +47,11 @@ function LoginPage() {
   useEffect(() => {
     if (loginErrors.length > 0) toast.error(loginErrors.join("\n"));
   }, [loginErrors]);
+
+  const handleTheme = () => {
+    const themeValue = theme === "light" ? "dark" : "light";
+    dispatch(setTheme(themeValue));
+  };
 
   return (
     <>
@@ -111,6 +123,20 @@ function LoginPage() {
               >
                 Pre-regístrate
               </Link>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <p>
+                  <Link
+                    to="/"
+                    className="text-[#0b488c] font-semibold ml-2 cursor-pointer"
+                  >
+                    Ir a Home
+                  </Link>
+                  <span className="font-extrabold"> | </span>
+                </p>
+                <button onClick={() => handleTheme()}>
+                  {theme ? <BsMoon /> : <BsSunFill />}
+                </button>
+              </div>
             </p>
           </div>
           {/*  right */}

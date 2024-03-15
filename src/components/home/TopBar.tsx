@@ -25,7 +25,7 @@ function TopBar() {
           <Logo />
         </div>
         <span className="text-xl md:text-2xl text-[#065ad8] font-semibold">
-          Asumameco
+          Asomameco
         </span>
       </Link>
       <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
