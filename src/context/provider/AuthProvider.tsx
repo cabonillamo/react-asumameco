@@ -17,12 +17,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const signIn = async (data: FormData) => {
     try {
       const res = await loginRequest(data);
 
-      Cookie.set("token", res.data.usuario.token);
+      Cookie.set("token", res.data.token);
 
       setUser(res.data.usuario);
       setIsAuth(true);
@@ -108,6 +109,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const token = Cookie.get("token");
     if (token) {
+      setIsLoading(true);
       meRequest(token)
         .then((res) => {
           setUser(res);
@@ -118,6 +120,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setIsAuth(false);
         });
     }
+    setIsLoading(false);
   }, []);
 
   return (
@@ -127,6 +130,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isAuth,
         errors,
         isEmailValid,
+        isLoading,
         signIn,
         signOut,
         resetPassword,
