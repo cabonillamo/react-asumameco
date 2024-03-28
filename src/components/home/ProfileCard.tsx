@@ -14,7 +14,7 @@ function ProfileCard({ user }: { user: User | null }) {
   if (!user) {
     return (
       <div className="w-full bg-primary flex flex-col items-center shadow-sm rounded-xl px-6 py-4">
-        <p>Loading user information...</p>
+        <p>Cargando...</p>
       </div>
     );
   }

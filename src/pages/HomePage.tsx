@@ -3,13 +3,14 @@ import { ProfileCard, TopBar, MoreInfo } from "../components/home";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const { user, isAuth } = useAuth();
+  const { user, isAuth, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  if (!isAuth) {
-    navigate("/login");
-    return null;
-  }
+  if (!isAuth) navigate("/login");
+
+  if (isLoading) return <p>Cargando...</p>;
+
+  if (user === undefined) window.location.reload();
 
   return (
     <>
@@ -24,7 +25,7 @@ function Home() {
           <div className="hidden w-1/4 h-full lg:flex flex-col gap-8 overflow-y-auto">
             <div className="w-full bg-primary shadow-sm rounded-lg px-6 py-5">
               <div className="flex items-center justify-between text-xl text-ascent-1 pb-2 border-b border-[#66666645]">
-                <span>Platform Information</span>
+                <span>Version</span>
                 <span>1.0.0</span>
               </div>
             </div>
