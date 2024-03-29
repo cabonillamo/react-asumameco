@@ -5,8 +5,9 @@ import RegisterPage from "./pages/RegisterPage";
 import Home from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
+import { EventsProvider } from "./context/provider/EventsProvider";
 import { useSelector } from "react-redux";
 import { RootState } from "./interfaces/redux/rootState";
 
@@ -27,7 +28,16 @@ function App(): JSX.Element {
         <Route
           element={<ProtectedRoute isAllowed={isAuth} redirectTo="/auth" />}
         >
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            element={
+              <EventsProvider>
+                <Outlet />
+              </EventsProvider>
+            }
+          >
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/home" element={<Home />} />
+          </Route>
         </Route>
 
         {/* no logueado */}
