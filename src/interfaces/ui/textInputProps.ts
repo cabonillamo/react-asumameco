@@ -7,4 +7,5 @@ export interface TextInputProps {
   register?: string;
   name?: string;
   error?: string;
+  onChange?: any; // ! Change this type
 }

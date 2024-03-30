@@ -3,5 +3,8 @@ export interface Event {
   nombre: string;
   direccion: string;
   fecha: string;
+  fechaCreacion: string;
+  descripcion?: string;
+  imagen?: string;
   eventoAsociados: [];
 }
