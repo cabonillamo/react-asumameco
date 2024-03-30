@@ -5,18 +5,25 @@ import {
   TopBar,
   MoreInfo,
   TextInput,
+  CustomButton,
   PostCard,
 } from "../components/home";
 import { useNavigate } from "react-router-dom";
 import { NoProfile } from "../assets/home";
-import { BiImages, BiSolidVideo } from "react-icons/bi";
-import { BsFiletypeGif } from "react-icons/bs";
-import { useEffect } from "react";
+import { BiImages } from "react-icons/bi";
+import { useEffect, useState } from "react";
 import { Event } from "../interfaces/context/events/event";
+import { AddEvent } from "../components/home";
+import { CiCircleMore } from "react-icons/ci";
 
 function Home() {
   const { user, isAuth, isLoading } = useAuth();
   const { events, loadEvents } = useEvents();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [eventName, setEvent] = useState<string>("");
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     loadEvents();
@@ -29,6 +36,10 @@ function Home() {
   if (isLoading) return <p>Cargando...</p>;
 
   if (user === undefined) window.location.reload();
+
+  const handleEventNameChange = (e: any) => {
+    setEvent(e.target.value);
+  };
 
   return (
     <>
@@ -49,11 +60,21 @@ function Home() {
                 />
                 <TextInput
                   styles="w-full rounded-full py-5"
-                  placeholder="Escribe un mensaje..."
-                  name="description"
+                  placeholder="Nombre del evento"
+                  name="nombre"
+                  onChange={handleEventNameChange}
                 />
+                {user?.id === user?.id ? (
+                  <CiCircleMore
+                    size={22}
+                    className="text-blue cursor-pointer"
+                    onClick={openModal}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
-              <div className="flex items-center justify-between py-4">
+              <div className="flex items-center justify-between py-3">
                 <label
                   htmlFor="imgUpload"
                   className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
@@ -67,44 +88,19 @@ function Home() {
                     accept=".jpg, .jpeg, .png"
                   />
                   <BiImages />
-                  <span>Evento</span>
-                </label>
-                <label
-                  className="flex items-center gap-1 text-base text-ascent-2
-                hover:text-ascent-1 cursor-pointer"
-                  htmlFor="videoUpload"
-                >
-                  <input
-                    type="file"
-                    data-max-size="5120"
-                    className="hidden"
-                    id="videoUpload"
-                    accept=".mp4, .mkv"
-                  />
-                  <BiSolidVideo />
-                  <span>Video</span>
+                  <span>Imagen para tu publicación</span>
                 </label>
 
-                <label
-                  className="flex items-center gap-1 text-base text-ascent-2
-                hover:text-ascent-1 cursor-pointer"
-                  htmlFor="vgifUpload"
-                >
-                  <input
-                    type="file"
-                    data-max-size="5120"
-                    className="hidden"
-                    id="vgifUpload"
-                    accept=".gif"
-                  />
-                  <BsFiletypeGif />
-                  <span>Gif</span>
-                </label>
+                <CustomButton
+                  type="submit"
+                  title="Publicar"
+                  containerStyles="bg-[#0444a4] text-white py-1 px-6 rounded-full font-semibold text-sm"
+                />
               </div>
             </form>
             {events.length > 0 ? (
               events.map((event: Event) => (
-                <PostCard key={event.id} post={event} />
+                <PostCard key={event.id} post={event} partipation={() => {}} />
               ))
             ) : (
               <div className="w-full bg-primary shadow-sm rounded-lg px-6 py-5">
@@ -122,6 +118,9 @@ function Home() {
               </div>
             </div>
           </div>
+          {isModalOpen && (
+            <AddEvent closeModal={closeModal} initialEventName={eventName} />
+          )}
         </div>
       </div>
     </>
