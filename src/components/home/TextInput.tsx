@@ -12,6 +12,7 @@ const TextInput = forwardRef(
       register,
       name,
       error,
+      onChange,
     }: TextInputProps,
     ref
   ) => {
@@ -30,6 +31,7 @@ const TextInput = forwardRef(
             className={`bg-secondary rounded border border-[#66666690] outline-none text-sm text-ascent-1 px-4 py-3 placeholder:text-[#66666690] ${styles}
             `}
             {...register}
+            onChange={onChange}
             aria-invalid={error ? "true" : "false"}
           />
         </div>
