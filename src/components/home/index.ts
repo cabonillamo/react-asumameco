@@ -5,6 +5,7 @@ import MoreInfo from "./MoreInfo";
 import EditProfile from "./EditProfile";
 import TextInput from "./TextInput";
 import PostCard from "./Posts/PostCard";
+import AddEvent from "./Posts/AddEvent";
 
 export {
   TopBar,
@@ -14,4 +15,5 @@ export {
   EditProfile,
   TextInput,
   PostCard,
+  AddEvent,
 };
