@@ -5,7 +5,6 @@ import TextInput from "../TextInput";
 import { CustomButton } from "..";
 import { useEvents } from "../../../hooks/useEvents";
 import { toast } from "react-toastify";
-import { Event } from "../../../interfaces/context/events/event";
 import { BiImage } from "react-icons/bi";
 
 function AddEvent({
@@ -15,7 +14,7 @@ function AddEvent({
   closeModal: () => void;
   initialEventName: string;
 }) {
-  const { events, createEvent } = useEvents();
+  const { events, createEvent, errors: addEventErros } = useEvents();
   const {
     register,
     handleSubmit,
@@ -37,18 +36,19 @@ function AddEvent({
   // !Todo: Add types to data
   const onSubmit = handleSubmit(async (data: any) => {
     try {
-      await createEvent(
+      const res = await createEvent(
         data.nombre,
         data.direccion,
         data.fecha,
         data.descripcion,
         data.imagen[0]
       );
-      toast.success("Evento creado con éxito");
+      toast.success(res.message);
       reset();
       setModalOpen(false);
     } catch (error) {
-      toast.error("Error al crear el evento");
+      toast.error(addEventErros[0]);
+      console.log(addEventErros)
     }
   });
 

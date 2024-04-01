@@ -2,9 +2,11 @@ import { EventsContext } from "../EventsContext";
 import { allEventsRequest, createEventRequest } from "../../api/events.api";
 import { useState } from "react";
 import { Event } from "../../interfaces/context/events/event";
+import { isAxiosError } from "axios";
 
 export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const loadEvents = async () => {
     const res = await allEventsRequest();
@@ -26,13 +28,26 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     formData.append("Descripcion", descripcion);
     formData.append("imagenFile", imagenFile);
 
-    await createEventRequest(formData);
+    try {
+      return await createEventRequest(formData);
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        if (Array.isArray(error.response.data)) {
+          setErrors(error.response.data);
+        } else {
+          setErrors(error.response.data);
+        }
+      } else {
+        console.error(error);
+      }
+    }
   };
 
   return (
     <EventsContext.Provider
       value={{
         events,
+        errors,
         loadEvents,
         createEvent,
       }}
