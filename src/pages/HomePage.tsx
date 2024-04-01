@@ -5,16 +5,15 @@ import {
   TopBar,
   MoreInfo,
   TextInput,
-  CustomButton,
   PostCard,
 } from "../components/home";
 import { useNavigate } from "react-router-dom";
 import { NoProfile } from "../assets/home";
-import { BiImages } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { Event } from "../interfaces/context/events/event";
 import { AddEvent } from "../components/home";
 import { CiCircleMore } from "react-icons/ci";
+import { ToastContainer } from "react-toastify";
 
 function Home() {
   const { user, isAuth, isLoading } = useAuth();
@@ -27,7 +26,7 @@ function Home() {
 
   useEffect(() => {
     loadEvents();
-  }, []);
+  }, [events]);
 
   const navigate = useNavigate();
 
@@ -43,6 +42,7 @@ function Home() {
 
   return (
     <>
+      <ToastContainer />
       <div className="w-full px-0 lg:px-10 pb-20 2xl:px-40 bg-bgColor lg:rounded-lg h-screen overflow-hidden">
         <TopBar />
         <div className="w-full flex gap-2 lg:gap-4 pt-5 pb-10 h-full">
@@ -73,29 +73,6 @@ function Home() {
                 ) : (
                   ""
                 )}
-              </div>
-              <div className="flex items-center justify-between py-3">
-                <label
-                  htmlFor="imgUpload"
-                  className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
-                >
-                  <input
-                    type="file"
-                    // onChange
-                    className="hidden"
-                    id="imgUpload"
-                    data-max-size="5120"
-                    accept=".jpg, .jpeg, .png"
-                  />
-                  <BiImages />
-                  <span>Imagen para tu publicación</span>
-                </label>
-
-                <CustomButton
-                  type="submit"
-                  title="Publicar"
-                  containerStyles="bg-[#0444a4] text-white py-1 px-6 rounded-full font-semibold text-sm"
-                />
               </div>
             </form>
             {events.length > 0 ? (
