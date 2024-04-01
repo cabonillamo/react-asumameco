@@ -115,7 +115,7 @@ function LoginPage() {
                 title="Iniciar sesión"
               />
             </form>
-            <p className="text-ascent-2 text-sm text-center">
+            <div className="text-ascent-2 text-sm text-center">
               ¿No tienes una cuenta?
               <Link
                 to="/register"
@@ -137,7 +137,7 @@ function LoginPage() {
                   {theme ? <BsMoon /> : <BsSunFill />}
                 </button>
               </div>
-            </p>
+            </div>
           </div>
           {/*  right */}
           <div className="w-full lg:w-1/2 h-full lg:flex flex-col items-center justify-center bg-[#07305d] hidden">
