@@ -40,24 +40,23 @@ function PostCard({
           {post.descripcion?.length! > 101 &&
             (showAll === post.id ? (
               <span
-                className="text-blue font-medium cursor-pointer"
+                className="text-blue font-medium cursor-pointer ml-1.5"
                 onClick={() => setShowAll(0)}
               >
                 Mostrar menos
               </span>
             ) : (
               <span
-                className="text-blue font-medium cursor-pointer"
+                className="text-blue font-medium cursor-pointer ml-1.5"
                 onClick={() => setShowAll(post.id)}
               >
                 Mostrar más
               </span>
             ))}
         </p>
-
         {post.imagen && (
           <img
-            src={post.imagen}
+            src={`data:image/png;base64,${post.imagen}`}
             alt="imagen del evento"
             className="w-full mt-2 rounded-lg"
           />
@@ -68,14 +67,14 @@ function PostCard({
       "
       >
         {
-          <button
+          <p
             onClick={partipation}
             className="flex items-center gap-1 text-base text-ascent-2
           hover:text-ascent-1 cursor-pointer"
           >
-            <IoCheckbox />
+            <IoCheckbox size={20} color="blue" />
             <span>Participar</span>
-          </button>
+          </p>
         }
       </div>
     </div>
