@@ -4,6 +4,9 @@ import { MdClose } from "react-icons/md";
 import TextInput from "../TextInput";
 import { CustomButton } from "..";
 import { useEvents } from "../../../hooks/useEvents";
+import { toast } from "react-toastify";
+import { Event } from "../../../interfaces/context/events/event";
+import { BiImage } from "react-icons/bi";
 
 function AddEvent({
   closeModal,
@@ -12,13 +15,17 @@ function AddEvent({
   closeModal: () => void;
   initialEventName: string;
 }) {
-  const { events } = useEvents();
+  const { events, createEvent } = useEvents();
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
-    defaultValues: { ...events, nombre: initialEventName },
+    defaultValues: {
+      ...events,
+      nombre: initialEventName || "",
+    },
   });
 
   const [isModalOpen, setModalOpen] = useState<boolean>(true);
@@ -26,6 +33,24 @@ function AddEvent({
   const handleClose = () => {
     closeModal();
   };
+
+  // !Todo: Add types to data
+  const onSubmit = handleSubmit(async (data: any) => {
+    try {
+      await createEvent(
+        data.nombre,
+        data.direccion,
+        data.fecha,
+        data.descripcion,
+        data.imagen[0]
+      );
+      toast.success("Evento creado con éxito");
+      reset();
+      setModalOpen(false);
+    } catch (error) {
+      toast.error("Error al crear el evento");
+    }
+  });
 
   return (
     <>
@@ -55,16 +80,22 @@ function AddEvent({
                   <MdClose size={22} />
                 </button>
               </div>
-              <form className="px-4 sm:px-6 flex flex-col gap-3 2xl:gap-6">
+              <form
+                className="px-4 sm:px-6 flex flex-col gap-3 2xl:gap-6"
+                onSubmit={onSubmit}
+              >
                 <TextInput
-                  label="Nombre del evento"
+                  name="nombre"
                   placeholder="Ponle un nombre al evento que quieres crear"
+                  label="Nombre del evento"
                   type="text"
                   styles="w-full"
                   register={register("nombre", {
                     required: "El nombre del evento es requerido",
                   })}
+                  error={errors.nombre ? errors.nombre.message : ""}
                 />
+
                 <TextInput
                   label="Dirección del evento"
                   placeholder="¿Dónde se llevará a cabo el evento?"
@@ -73,6 +104,7 @@ function AddEvent({
                   register={register("direccion", {
                     required: "La dirección del evento es requerida",
                   })}
+                  error={errors.direccion ? errors.direccion.message : ""}
                 />
 
                 <TextInput
@@ -82,17 +114,39 @@ function AddEvent({
                   register={register("fecha", {
                     required: "La fecha del evento es requerida",
                   })}
+                  error={errors.fecha ? errors.fecha.message : ""}
                 />
 
                 <TextInput
                   label="Descripción del evento"
-                  placeholder="Describe brevemente el evento que quieres crear"
+                  placeholder="¿De qué se trata el evento?"
                   type="text"
                   styles="w-full"
-                  register={register("descripcion")}
+                  register={register("descripcion", {
+                    required: "La descripción del evento es requerida",
+                  })}
+                  error={errors.descripcion ? errors.descripcion.message : ""}
                 />
 
-                <div className="py-5 sm:flex sm:flex-row-reverse border-b border-[#66666645]">
+                <div>
+                  <label
+                    htmlFor="imagen"
+                    className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
+                  >
+                    <input
+                      type="file"
+                      id="imagen"
+                      accept=".jpeg, .png"
+                      className="hidden"
+                      {...register("imagen", {
+                        required: "La imagen del evento es requerida",
+                      })}
+                    />
+                    <BiImage />
+                    <span>Imagen del evento solo .jpeg o .png</span>
+                  </label>
+                </div>
+                <div className="py-5 sm:flex sm:flex-row-reverse border-b border-ii[#66666645]">
                   <CustomButton
                     type="submit"
                     containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
