@@ -137,6 +137,7 @@ function AddEvent({
                       type="file"
                       id="imagen"
                       accept=".jpeg, .png"
+                      max="5000000"
                       className="hidden"
                       {...register("imagen", {
                         required: "La imagen del evento es requerida",
