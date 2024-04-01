@@ -5,6 +5,6 @@ export interface Event {
   fecha: string;
   fechaCreacion: string;
   descripcion?: string;
-  imagen?: string;
+  imagen: string;
   eventoAsociados: [];
 }
