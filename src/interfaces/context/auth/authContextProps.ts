@@ -7,7 +7,7 @@ export interface authContextProps {
   isEmailValid: boolean;
   isLoading: boolean;
   signIn: (data: FormData) => Promise<User | null>;
-  signOut: () => Promise<void>;
+  signOut: () => Promise<{ message: string }>;
   resetPassword: (email: string) => Promise<void>;
   changePassword: (
     currentPassword: string,

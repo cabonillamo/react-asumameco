@@ -7,6 +7,8 @@ import { CustomButton } from ".";
 import { useAuth } from "../../hooks/useAuth";
 import Logo from "../../icons/landing/Logo";
 import { RootState } from "../../interfaces/redux/rootState";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function TopBar() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -18,33 +20,47 @@ function TopBar() {
     dispatch(setTheme(themeValue));
   };
 
-  return (
-    <div className="topbar w-full flex items-center justify-between py-3 md:py-6 px-4 bg-primary">
-      <Link to="/" className="flex gap-2 items-center">
-        <div className="p-1 md:p-2 bg-[#065ad8] rounded text-white">
-          <Logo />
-        </div>
-        <span className="text-xl md:text-2xl text-[#065ad8] font-semibold">
-          Asomameco
-        </span>
-      </Link>
-      <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
-        <button onClick={() => handleTheme()}>
-          {theme ? <BsMoon /> : <BsSunFill />}
-        </button>
-        <div className="hidden lg:flex"></div>
-      </div>
+  const handleLogout = async () => {
+    const res = await signOut();
+    toast.success(res.message);
+  };
 
-      <div>
-        <CustomButton
-          onClick={() => {
-            signOut();
-          }}
-          title="Logout"
-          containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
-        />
+  return (
+    <>
+      <ToastContainer />
+      <div className="topbar w-full flex items-center justify-between py-3 md:py-6 px-4 bg-primary">
+        <Link to="/" className="flex gap-2 items-center">
+          <div className="p-1 md:p-2 bg-[#065ad8] rounded text-white">
+            <Logo />
+          </div>
+          <span className="text-xl md:text-2xl text-[#065ad8] font-semibold">
+            Asomameco
+          </span>
+        </Link>
+        <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
+          <button onClick={() => handleTheme()}>
+            {theme ? <BsMoon /> : <BsSunFill />}
+          </button>
+          <div className="hidden lg:flex"></div>
+        </div>
+
+        <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
+          <CustomButton
+            onClick={() => {
+              handleLogout();
+            }}
+            title="Logout"
+            containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
+          />
+          <Link to="/admin">
+            <CustomButton
+              title="Admin"
+              containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
+            />
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

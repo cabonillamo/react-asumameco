@@ -47,12 +47,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const token = Cookie.get("token");
       if (!token) throw new Error("No token found");
 
-      await signOutRequest(token);
+      const res = await signOutRequest(token);
 
       Cookie.remove("token");
 
       setUser(null);
       setIsAuth(false);
+      return res.data;
     } catch (error) {
       console.error(error);
     }
