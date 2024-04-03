@@ -9,6 +9,7 @@ import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import { EventsProvider } from "./context/provider/EventsProvider";
+import { UsersProvider } from "./context/provider/UsersProvider";
 import { useSelector } from "react-redux";
 import { RootState } from "./interfaces/redux/rootState";
 
@@ -37,7 +38,17 @@ function App(): JSX.Element {
             }
           >
             <Route path="/profile" element={<Profile />} />
-            <Route path="/admin" element={<AdminPage />} />
+
+            <Route
+              element={
+                <UsersProvider>
+                  <Outlet />
+                </UsersProvider>
+              }
+            >
+              <Route path="/admin" element={<AdminPage />} />
+            </Route>
+
             <Route path="/home" element={<Home />} />
           </Route>
         </Route>
