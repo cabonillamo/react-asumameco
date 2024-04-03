@@ -1,9 +1,10 @@
 import LandingPage from "./pages/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import Home from "./pages/HomePage";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import Home from "./pages/home/HomePage";
 import Profile from "./pages/Profile";
+import AdminPage from "./pages/admin/AdminPage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
@@ -36,6 +37,7 @@ function App(): JSX.Element {
             }
           >
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/home" element={<Home />} />
           </Route>
         </Route>
