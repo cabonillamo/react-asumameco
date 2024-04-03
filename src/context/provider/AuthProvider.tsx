@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error(error);
     }
   };
+
   const resetPassword = async (email: string) => {
     try {
       await resetPasswordRequest(email);
@@ -97,7 +98,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (Array.isArray(error.response.data)) {
           setErrors(error.response.data);
         } else {
-          setErrors([error.response.data]);
+          setErrors(error.response.data);
         }
       } else {
         console.error(error);
