@@ -14,6 +14,7 @@ import { RootState } from "../../interfaces/redux/rootState";
 import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
 import { BsMoon, BsSunFill } from "react-icons/bs";
+import { useEffect } from "react";
 
 function RegisterPage() {
   const {
@@ -29,18 +30,21 @@ function RegisterPage() {
 
   // !TODO: Add type for data
   const onsubmit = handleSubmit(async (data: any) => {
-    try {
-      const res = await preRegister(data);
+    const res = await preRegister(data);
+
+    if (res) {
+      preRegisterErrors.length = 0;
       toast.success(res.message);
       toast.info(
         "Tu cuenta está inactiva. El administrador deberá aprobar tu solicitud antes de que puedas acceder."
       );
-
       reset();
-    } catch {
-      toast.error(preRegisterErrors);
     }
   });
+
+  useEffect(() => {
+    if (preRegisterErrors.length > 0) toast.error(preRegisterErrors.join("\n"));
+  }, [preRegisterErrors]);
 
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
