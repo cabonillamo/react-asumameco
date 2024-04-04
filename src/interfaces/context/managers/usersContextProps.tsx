@@ -1,5 +1,6 @@
-import { User } from "./User";
+import { Manager, Associate } from "./user";
 
 export interface usersContextProps {
-  managers: User[];
+  managers: Manager[];
+  associates: Associate[];
 }
