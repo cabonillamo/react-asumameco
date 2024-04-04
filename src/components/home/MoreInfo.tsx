@@ -16,7 +16,7 @@ function MoreInfo({ user }: { user: User | null }) {
           <div className="w-full flex flex-col gap-4 pt-4">
             {user.idRol === 1 ? (
               <div>
-                <span>Role: Admin</span>
+                <span>Rol: Administrador</span>
               </div>
             ) : (
               <div>
