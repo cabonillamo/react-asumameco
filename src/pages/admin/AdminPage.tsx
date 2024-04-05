@@ -40,12 +40,17 @@ function AdminPage() {
                 </div>
               )}
             </div>
-            <p className="text-gray-800 font-semibold">Encargados</p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {managers.map((manager: Manager) => (
-                <ManagersCard key={manager.id} manager={manager} />
-              ))}
-            </div>
+
+            {user.idRol === 1 && (
+              <>
+                <p className="text-gray-800 font-semibold">Encargados</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {managers.map((manager: Manager) => (
+                    <ManagersCard key={manager.id} manager={manager} />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
