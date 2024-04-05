@@ -3,12 +3,14 @@ import { useAuth } from "../../hooks/useAuth";
 import { TopBar } from "../../components/home/";
 import { Associate, Manager } from "../../interfaces/context/managers/user";
 import { AddUser, AssociateCard, ManagersCard } from "../../components/admin";
+import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
   const { associates, managers } = useUsers();
-  const { user } = useAuth();
+  const { user, isAuth } = useAuth();
+  const navigate = useNavigate();
 
-  console.log(associates);
+  if (!isAuth) navigate("/login");
 
   if (!user) {
     return (

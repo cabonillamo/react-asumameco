@@ -36,7 +36,7 @@ function RegisterPage() {
       preRegisterErrors.length = 0;
       toast.success(res.message);
       toast.info(
-        "Tu cuenta está inactiva. El administrador deberá aprobar tu solicitud antes de que puedas acceder."
+        "Tu cuenta está inactiva. El administrador deberá aprobar tu solicitud antes de que puedas acceder al sistema."
       );
       reset();
     }
@@ -79,6 +79,10 @@ function RegisterPage() {
                   styles="w-full"
                   register={register("id", {
                     required: "La cédula es requerida",
+                    pattern: {
+                      value: /^[0-9]*$/,
+                      message: "La cédula debe ser un número",
+                    },
                   })}
                   error={errors.cedula ? errors.cedula.message : ""}
                 />
