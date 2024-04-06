@@ -2,13 +2,14 @@ import { User } from "../../interfaces/context/auth/user";
 import { TextInput } from "../auth";
 import { useUsers } from "../../hooks/useUsers";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddUser({ user, idRol }: { user: User; idRol: number }) {
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm();
   const { createAsociado, createEncargado } = useUsers();
@@ -21,18 +22,24 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
 
   const onSubmit = handleSubmit(async (data: any) => {
     try {
-      console.log(data);
+      let res;
       if (idRol === 1) {
-        if (selectedOption === "2") {
-          createAsociado(data);
-        } else {
-          createEncargado(data);
-        }
+        res =
+          selectedOption === "2"
+            ? await createAsociado(data)
+            : await createEncargado(data);
       } else {
-        createAsociado(data);
+        res = await createAsociado(data);
       }
-    } catch (error) {
-      console.log(error);
+      alert(res.data.message);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        alert(error.response.data);
+      } else {
+        alert(
+          "Ocurrió un error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde."
+        );
+      }
     }
   });
 

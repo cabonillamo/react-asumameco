@@ -13,21 +13,19 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
   const [managers, setManagers] = useState<Manager[]>([]);
   const [associates, setAssociates] = useState<Associate[]>([]);
 
-  const createAsociado = async (data: any) => {
+  const createAsociado = async (data: FormData) => {
     try {
-      const res = await createAsociadoRequest(data);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      return await createAsociadoRequest(data);
+    } catch (error: any) {
+      throw error;
     }
   };
 
-  const createEncargado = async (data: any) => {
+  const createEncargado = async (data: FormData) => {
     try {
-      const res = await createEncargadoRequest(data);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      return await createEncargadoRequest(data);
+    } catch (error: any) {
+      throw error;
     }
   };
 
@@ -44,10 +42,11 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <UsersContext.Provider
       value={{
-        createAsociado,
-        createEncargado,
         managers,
         associates,
+
+        createAsociado,
+        createEncargado,
       }}
     >
       {children}
