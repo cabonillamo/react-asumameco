@@ -3,6 +3,7 @@ import { useState } from "react";
 import moment from "moment";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoCheckbox } from "react-icons/io5";
+import { NoProfile } from "../../../assets/home";
 
 function PostCard({
   post,
@@ -15,7 +16,16 @@ function PostCard({
 
   return (
     <div className="mb-2 bg-primary p-4 pt-0 rounded-xl ">
-      {/* <div className="flex gap-3 items-center mb-2"></div>  */}
+      <div className="flex gap-3 items-center mb-2">
+        <img
+          src={NoProfile}
+          alt={post.nombre}
+          className="w-14 h-14 object-cover rounded-full"
+        />
+        <div>
+          <h1 className="font-medium text-lg text-ascent-1"> {post.nombre}</h1>
+        </div>
+      </div>
       <div className="w-full flex justify-between">
         <div className="">
           <span className="text-ascent-2">
