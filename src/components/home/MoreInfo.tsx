@@ -18,9 +18,13 @@ function MoreInfo({ user }: { user: User | null }) {
               <div>
                 <span>Rol: Administrador</span>
               </div>
+            ) : user.idRol.toString() === "" ? (
+              <div>
+                <span>Rol: Asociado</span>
+              </div>
             ) : (
               <div>
-                <span>Role: Encargado</span>
+                <span>Rol: Encargado</span>
               </div>
             )}
           </div>
