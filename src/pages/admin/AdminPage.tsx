@@ -27,16 +27,8 @@ function AdminPage() {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 lg:gap-8">
           <AddUser idRol={user.idRol} user={user} />
 
-          <div
-            className="lg:col-span-2 p-4 bg-bgColor 
-          mt-3 border-b border-[#66666645]"
-          >
-            <p
-              className="text-ascent-2
-            font-semibold"
-            >
-              Asociados
-            </p>
+          <div className="lg:col-span-2 p-4 bg-bgColor mt-3 border-b border-[#66666645]">
+            <p className="text-ascent-2 font-semibold pb-3">Asociados</p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {associates.length > 0 ? (
                 associates.map((associate: Associate) => (
@@ -52,13 +44,8 @@ function AdminPage() {
             </div>
 
             {user.idRol === 1 && (
-              <>
-                <p
-                  className="text-ascent-2
-                font-semibold"
-                >
-                  Encargados
-                </p>
+              <div className="pt-10">
+                <p className="text-ascent-2 font-semibold pb-3">Encargados</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {managers.length > 0 ? (
                     managers.map((manager: Manager) => (
@@ -72,7 +59,7 @@ function AdminPage() {
                     </div>
                   )}
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>

@@ -3,6 +3,8 @@ import {
   allUserRequest,
   createAsociadoRequest,
   createEncargadoRequest,
+  cambiarEstadoAsociadoRequest,
+  cambiarEstadoEncargadoRequest,
 } from "../../api/users.api";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -15,7 +17,14 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createAsociado = async (data: FormData) => {
     try {
-      return await createAsociadoRequest(data);
+      const token = Cookie.get("token");
+      if (token) {
+        const resquest = await createAsociadoRequest(data, token);
+        const res = await allUserRequest(token);
+        setManagers(res.data.encargados);
+        setAssociates(res.data.asociados);
+        return resquest;
+      }
     } catch (error: any) {
       throw error;
     }
@@ -23,7 +32,46 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createEncargado = async (data: FormData) => {
     try {
-      return await createEncargadoRequest(data);
+      const token = Cookie.get("token");
+      if (token) {
+        const resquest = await createEncargadoRequest(data, token);
+        const res = await allUserRequest(token);
+        setManagers(res.data.encargados);
+        setAssociates(res.data.asociados);
+        return resquest;
+      }
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
+  const cambiarEstadoAsociado = async (userId: number, activar: boolean) => {
+    try {
+      const token = Cookie.get("token");
+      if (token) {
+        await cambiarEstadoAsociadoRequest(userId, activar, token);
+        const res = await allUserRequest(token);
+        setManagers(res.data.encargados);
+        setAssociates(res.data.asociados);
+      } else {
+        throw new Error("Token de autenticación no encontrado");
+      }
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
+   const cambiarEstadoEncargado = async (userId: number, activar: boolean) => {
+    try {
+      const token = Cookie.get("token");
+      if (token) {
+        await cambiarEstadoEncargadoRequest(userId, activar, token);
+        const res = await allUserRequest(token);
+        setManagers(res.data.encargados);
+        setAssociates(res.data.asociados);
+      } else {
+        throw new Error("Token de autenticación no encontrado");
+      }
     } catch (error: any) {
       throw error;
     }
@@ -44,9 +92,10 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         managers,
         associates,
-
         createAsociado,
         createEncargado,
+        cambiarEstadoAsociado,
+        cambiarEstadoEncargado,
       }}
     >
       {children}

@@ -15,6 +15,6 @@ export interface Manager {
   telefono: string;
   email: string;
   password: string;
-  estado: string;
+  activo: string;
   justificacion: string;
 }

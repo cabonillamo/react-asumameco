@@ -5,4 +5,6 @@ export interface usersContextProps {
   associates: Associate[];
   createEncargado: (data: FormData) => Promise<any>;
   createAsociado: (data: FormData) => Promise<any>;
+  cambiarEstadoAsociado: (userId: number, activar: boolean) => Promise<any>;
+  cambiarEstadoEncargado: (userId: number, activar: boolean) => Promise<any>;
 }
