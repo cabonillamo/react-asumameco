@@ -6,6 +6,7 @@ import { CustomButton } from "..";
 import { useEvents } from "../../../hooks/useEvents";
 import { toast } from "react-toastify";
 import { BiImage } from "react-icons/bi";
+import { useAuth } from "../../../hooks/useAuth";
 
 function AddEvent({
   closeModal,
@@ -15,6 +16,8 @@ function AddEvent({
   initialEventName: string;
 }) {
   const { events, createEvent, errors: addEventErros } = useEvents();
+  const { user } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -36,8 +39,10 @@ function AddEvent({
   // !Todo: Add types to data
   const onSubmit = handleSubmit(async (data: any) => {
     try {
+      if(!user) throw new Error("No user found");
       const res = await createEvent(
         data.nombre,
+        user.id,
         data.direccion,
         data.fecha,
         data.descripcion,
@@ -48,7 +53,7 @@ function AddEvent({
       setModalOpen(false);
     } catch (error) {
       toast.error(addEventErros[0]);
-      console.log(addEventErros)
+      console.log(addEventErros);
     }
   });
 

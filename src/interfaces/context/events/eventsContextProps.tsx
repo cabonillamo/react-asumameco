@@ -6,6 +6,7 @@ export interface eventsContextProps {
   loadEvents: () => void;
   createEvent: (
     nombre: string,
+    IdUsuarioCreador: number,
     direccion: string,
     fecha: string,
     descripcion: string,

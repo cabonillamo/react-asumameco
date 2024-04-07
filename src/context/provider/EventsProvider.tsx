@@ -15,6 +15,7 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createEvent = async (
     nombre: string,
+    IdUsuarioCreador: number,
     direccion: string,
     fecha: string,
     descripcion: string,
@@ -23,6 +24,7 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     const formData = new FormData();
 
     formData.append("Nombre", nombre);
+    formData.append("IdUsuarioCreador", IdUsuarioCreador.toString());
     formData.append("Direccion", direccion);
     formData.append("Fecha", fecha);
     formData.append("Descripcion", descripcion);
