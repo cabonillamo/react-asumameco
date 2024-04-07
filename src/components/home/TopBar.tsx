@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 function TopBar() {
   const { theme } = useSelector((state: RootState) => state.theme);
   const dispatch: Dispatch<ThemeAction> = useDispatch();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
@@ -24,6 +24,10 @@ function TopBar() {
     const res = await signOut();
     toast.success(res.message);
   };
+
+  if (user === undefined) window.location.reload();
+
+  if (!user) return null;
 
   return (
     <>
@@ -52,12 +56,14 @@ function TopBar() {
             title="Logout"
             containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
           />
-          <Link to="/admin">
-            <CustomButton
-              title="Admin"
-              containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
-            />
-          </Link>
+          {user.idRol.toString() !== "" && (
+            <Link to="/admin">
+              <CustomButton
+                title="Admin"
+                containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
+              />
+            </Link>
+          )}
         </div>
       </div>
     </>
