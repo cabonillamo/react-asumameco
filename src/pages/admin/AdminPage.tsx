@@ -1,13 +1,21 @@
 import { useUsers } from "../../hooks/useUsers";
 import { useAuth } from "../../hooks/useAuth";
+import { useEvents } from "../../hooks/useEvents";
 import { TopBar } from "../../components/home/";
 import { Associate, Manager } from "../../interfaces/context/managers/user";
-import { AddUser, AssociateCard, ManagersCard } from "../../components/admin";
+import {
+  AddUser,
+  AssociateCard,
+  ManagersCard,
+  EventsTable,
+} from "../../components/admin";
 import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
   const { associates, managers } = useUsers();
   const { user, isAuth } = useAuth();
+  const { events } = useEvents();
+
   const navigate = useNavigate();
 
   if (!isAuth) navigate("/login");
@@ -59,6 +67,12 @@ function AdminPage() {
                     </div>
                   )}
                 </div>
+              </div>
+            )}
+            {user.idRol === 1 && (
+              <div className="pt-10">
+                <p className="text-ascent-2 font-semibold pb-3">Eventos</p>
+                <EventsTable events={events} />
               </div>
             )}
           </div>

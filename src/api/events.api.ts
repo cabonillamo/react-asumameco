@@ -30,3 +30,12 @@ export const participateEventRequest = async (
     throw error;
   }
 };
+
+export const deleteEventRequest = async (IdEvento: number) => {
+  try {
+    const response = await client.delete(`Evento/BorrarEvento/${IdEvento}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

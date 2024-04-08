@@ -13,4 +13,5 @@ export interface eventsContextProps {
     imagen: File
   ) => any;
   participateEvent: (IdEvento: number, IdAsociado: number) => any;
+  deleteEvent: (IdEvento: number) => any;
 }
