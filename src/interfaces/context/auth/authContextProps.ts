@@ -15,4 +15,5 @@ export interface authContextProps {
     token: string
   ) => Promise<void>;
   preRegister: (data: FormData) => Promise<{ message: string }>;
+  updateUser: (id: number, data: FormData) => Promise<any>;
 }

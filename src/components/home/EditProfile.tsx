@@ -6,10 +6,11 @@ import TextInput from "./TextInput";
 import { CustomButton } from ".";
 
 function EditProfile() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const {
     register,
     formState: { errors },
+    handleSubmit,
   } = useForm({
     mode: "onChange",
     defaultValues: { ...user },
@@ -20,6 +21,14 @@ function EditProfile() {
   const handleClose = () => {
     setModalOpen(false);
   };
+
+  const onSubmit = handleSubmit(async (data: any) => {
+    if (!user) return;
+    const res = await updateUser(user.id, data);
+    alert(res);
+    handleClose();
+    window.location.reload();
+  });
 
   return (
     <>
@@ -49,9 +58,12 @@ function EditProfile() {
                   <MdClose size={22} />
                 </button>
               </div>
-              <form className="px-4 sm:px-6 flex flex-col gap-3 2xl:gap-6">
+              <form
+                onSubmit={onSubmit}
+                className="px-4 sm:px-6 flex flex-col gap-3 2xl:gap-6"
+              >
                 <TextInput
-                  label="Name"
+                  label="Nombre"
                   placeholder="Name"
                   type="text"
                   styles="w-full"
@@ -61,7 +73,7 @@ function EditProfile() {
                   error={errors.nombre ? errors.nombre.message : ""}
                 />
                 <TextInput
-                  label="Last Name"
+                  label="Apellidos"
                   placeholder="Last Name"
                   type="text"
                   styles="w-full"
@@ -75,7 +87,7 @@ function EditProfile() {
                   <CustomButton
                     type="submit"
                     containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
-                    title="Submit"
+                    title="Actualizar"
                   />
                 </div>
               </form>

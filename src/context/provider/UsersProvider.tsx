@@ -61,7 +61,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-   const cambiarEstadoEncargado = async (userId: number, activar: boolean) => {
+  const cambiarEstadoEncargado = async (userId: number, activar: boolean) => {
     try {
       const token = Cookie.get("token");
       if (token) {

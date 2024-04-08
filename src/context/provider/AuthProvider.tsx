@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { User } from "../../interfaces/context/auth/user";
 import Cookie from "js-cookie";
 import { isAxiosError } from "axios";
+import { updateUserRequest } from "../../api/users.api";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -107,6 +108,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const updateUser = async (id: number, data: FormData) => {
+    try {
+      const res = await updateUserRequest(id, data);
+      return res.data.message;
+    } catch (error: any) {
+      console.log(error);
+      throw error;
+    }
+  };
+
   useEffect(() => {}, [isEmailValid]);
   useEffect(() => {
     const token = Cookie.get("token");
@@ -138,6 +149,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         resetPassword,
         changePassword,
         preRegister,
+        updateUser,
       }}
     >
       {children}

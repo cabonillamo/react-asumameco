@@ -78,3 +78,16 @@ export const cambiarEstadoEncargadoRequest = async (
     throw error;
   }
 };
+
+export const updateUserRequest = async (id: number, data: FormData) => {
+  try {
+    const res = await client.post(`Usuario/ActualizarUsuario/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
