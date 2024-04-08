@@ -8,9 +8,11 @@ import { NoProfile } from "../../../assets/home";
 function PostCard({
   post,
   partipation,
+  userLogged,
 }: {
   post: Event;
   partipation: () => void;
+  userLogged: any;
 }) {
   const [showAll, setShowAll] = useState(0);
 
@@ -19,11 +21,13 @@ function PostCard({
       <div className="flex gap-3 items-center mb-2">
         <img
           src={NoProfile}
-          alt={post.nombre}
+          alt={post.usuarioCreador.nombre.charAt(0) || "U"}
           className="w-14 h-14 object-cover rounded-full"
         />
         <div>
-          <h1 className="font-medium text-lg text-ascent-1"> {post.nombre}</h1>
+          <h1 className="font-medium text-lg text-ascent-1">
+            {post.usuarioCreador.nombre + " " + post.usuarioCreador.apellidos}
+          </h1>
         </div>
       </div>
       <div className="w-full flex justify-between">

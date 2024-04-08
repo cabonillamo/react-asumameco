@@ -7,4 +7,9 @@ export interface Event {
   descripcion?: string;
   imagen: string;
   eventoAsociados: [];
+  usuarioCreador: {
+    id: number;
+    nombre: string;
+    apellidos: string;
+  };
 }

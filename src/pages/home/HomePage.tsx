@@ -77,7 +77,12 @@ function Home() {
             </form>
             {events.length > 0 ? (
               events.map((event: Event) => (
-                <PostCard key={event.id} post={event} partipation={() => {}} />
+                <PostCard
+                  key={event.id}
+                  post={event}
+                  partipation={() => {}}
+                  userLogged={user}
+                />
               ))
             ) : (
               <div className="w-full bg-primary shadow-sm rounded-lg px-6 py-5">
