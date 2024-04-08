@@ -4,7 +4,6 @@ import { MdClose } from "react-icons/md";
 import TextInput from "../TextInput";
 import { CustomButton } from "..";
 import { useEvents } from "../../../hooks/useEvents";
-import { toast } from "react-toastify";
 import { BiImage } from "react-icons/bi";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -15,7 +14,7 @@ function AddEvent({
   closeModal: () => void;
   initialEventName: string;
 }) {
-  const { events, createEvent, errors: addEventErros } = useEvents();
+  const { events, createEvent } = useEvents();
   const { user } = useAuth();
 
   const {
@@ -39,7 +38,7 @@ function AddEvent({
   // !Todo: Add types to data
   const onSubmit = handleSubmit(async (data: any) => {
     try {
-      if(!user) throw new Error("No user found");
+      if (!user) throw new Error("No user found");
       const res = await createEvent(
         data.nombre,
         user.id,
@@ -48,12 +47,13 @@ function AddEvent({
         data.descripcion,
         data.imagen[0]
       );
-      toast.success(res.message);
+      alert(res);
       reset();
+
       setModalOpen(false);
     } catch (error) {
-      toast.error(addEventErros[0]);
-      console.log(addEventErros);
+      alert(error);
+      console.log(error);
     }
   });
 

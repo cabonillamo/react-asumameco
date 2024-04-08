@@ -2,7 +2,6 @@ import { EventsContext } from "../EventsContext";
 import { allEventsRequest, createEventRequest } from "../../api/events.api";
 import { useState } from "react";
 import { Event } from "../../interfaces/context/events/event";
-import { isAxiosError } from "axios";
 
 export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -31,17 +30,10 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     formData.append("imagenFile", imagenFile);
 
     try {
-      return await createEventRequest(formData);
-    } catch (error) {
-      if (isAxiosError(error) && error.response) {
-        if (Array.isArray(error.response.data)) {
-          setErrors(error.response.data);
-        } else {
-          setErrors(error.response.data);
-        }
-      } else {
-        console.error(error);
-      }
+      const res = await createEventRequest(formData);
+      return res.message;
+    } catch (error: any) {
+      throw error.response.data;
     }
   };
 
