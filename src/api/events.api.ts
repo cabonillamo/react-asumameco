@@ -14,3 +14,19 @@ export const createEventRequest = async (formData: FormData) => {
     throw error;
   }
 };
+
+export const participateEventRequest = async (
+  IdEvento: number,
+  IdAsociado: number
+) => {
+  try {
+    const response = await client.post("Evento/ConfirmarAsistencia", {
+      IdEvento,
+      IdAsociado,
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -12,4 +12,11 @@ export interface Event {
     nombre: string;
     apellidos: string;
   };
+  participantes: [
+    {
+      id: number;
+      nombre: string;
+      apellidos: string;
+    }
+  ]
 }

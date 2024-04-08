@@ -36,6 +36,8 @@ function Home() {
 
   if (user === undefined) window.location.reload();
 
+  if (user === null) return <p className="text-red-500">No hay usuario</p>;
+
   const handleEventNameChange = (e: any) => {
     setEvent(e.target.value);
   };
@@ -81,7 +83,7 @@ function Home() {
                   key={event.id}
                   post={event}
                   partipation={() => {}}
-                  userLogged={user}
+                  idUserLogged={user.id}
                 />
               ))
             ) : (

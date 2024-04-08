@@ -1,5 +1,9 @@
 import { EventsContext } from "../EventsContext";
-import { allEventsRequest, createEventRequest } from "../../api/events.api";
+import {
+  allEventsRequest,
+  createEventRequest,
+  participateEventRequest,
+} from "../../api/events.api";
 import { useState } from "react";
 import { Event } from "../../interfaces/context/events/event";
 
@@ -37,6 +41,15 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const participateEvent = async (IdEvento: number, IdAsociado: number) => {
+    try {
+      const res = await participateEventRequest(IdEvento, IdAsociado);
+      return res;
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
   return (
     <EventsContext.Provider
       value={{
@@ -44,6 +57,7 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
         errors,
         loadEvents,
         createEvent,
+        participateEvent,
       }}
     >
       {children}

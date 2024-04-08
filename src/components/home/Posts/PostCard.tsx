@@ -4,20 +4,31 @@ import moment from "moment";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoCheckbox } from "react-icons/io5";
 import { NoProfile } from "../../../assets/home";
+import { MdCancel } from "react-icons/md";
+import { useEvents } from "../../../hooks/useEvents";
+import { FaHandsHelping } from "react-icons/fa";
 
 function PostCard({
   post,
-  partipation,
-  userLogged,
+  idUserLogged,
 }: {
   post: Event;
-  partipation: () => void;
-  userLogged: any;
+  idUserLogged: number;
 }) {
+  const { participateEvent } = useEvents();
   const [showAll, setShowAll] = useState(0);
 
+  const userParticipates = post.participantes.some(
+    (participante) => participante.id === idUserLogged
+  );
+
+  const handleParticipation = () => {
+    if (userParticipates) participateEvent(post.id, idUserLogged);
+    else participateEvent(post.id, idUserLogged);
+  };
+
   return (
-    <div className="mb-2 bg-primary p-4 pt-0 rounded-xl ">
+    <div className="mb-2 bg-primary p-4 pt-0 rounded-xl">
       <div className="flex gap-3 items-center mb-2">
         <img
           src={NoProfile}
@@ -51,22 +62,25 @@ function PostCard({
             ? post.descripcion
             : post.descripcion?.slice(0, 100)}
 
-          {post.descripcion?.length! > 101 &&
-            (showAll === post.id ? (
-              <span
-                className="text-blue font-medium cursor-pointer ml-1.5"
-                onClick={() => setShowAll(0)}
-              >
-                Mostrar menos
-              </span>
-            ) : (
-              <span
-                className="text-blue font-medium cursor-pointer ml-1.5"
-                onClick={() => setShowAll(post.id)}
-              >
-                Mostrar más
-              </span>
-            ))}
+          {post.descripcion?.length! > 101 && (
+            <>
+              {showAll === post.id ? (
+                <span
+                  className="text-blue font-medium cursor-pointer ml-1.5"
+                  onClick={() => setShowAll(0)}
+                >
+                  Mostrar menos
+                </span>
+              ) : (
+                <span
+                  className="text-blue font-medium cursor-pointer ml-1.5"
+                  onClick={() => setShowAll(post.id)}
+                >
+                  Mostrar más
+                </span>
+              )}
+            </>
+          )}
         </p>
         {post.imagen && (
           <img
@@ -76,20 +90,29 @@ function PostCard({
           />
         )}
       </div>
-      <div
-        className="mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t border-[#66666645]
-      "
-      >
-        {
-          <p
-            onClick={partipation}
-            className="flex items-center gap-1 text-base text-ascent-2
-          hover:text-ascent-1 cursor-pointer"
-          >
-            <IoCheckbox size={20} color="blue" />
-            <span>Participar</span>
-          </p>
-        }
+      <div className="mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t border-[#66666645]">
+        <p
+          onClick={handleParticipation}
+          className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
+        >
+          {userParticipates ? (
+            <>
+              <MdCancel size={20} color="red" />
+              <span>Cancelar participación</span>
+            </>
+          ) : (
+            <>
+              <IoCheckbox size={20} color="blue" />
+              <span>Participar</span>
+            </>
+          )}
+        </p>
+
+        <div className="flex items-center gap-1">
+          <span>{post.participantes.length}</span>
+          <span>Participantes</span>
+          <FaHandsHelping size={20} />
+        </div>
       </div>
     </div>
   );
