@@ -94,6 +94,10 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
                   value: /^[0-9]*$/,
                   message: "La cédula debe ser un número",
                 },
+                maxLength: {
+                  value: 9,
+                  message: "La cédula debe tener máximo 9 dígitos",
+                },
               })}
               error={errors.cedula ? errors.cedula.message : ""}
             />
