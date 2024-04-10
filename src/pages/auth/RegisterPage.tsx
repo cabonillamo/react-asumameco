@@ -3,7 +3,7 @@ import { TextInput, CustomButton } from "../../components/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Logo } from "../../assets/auth";
-import { BsShare } from "react-icons/bs";
+import { BsEyeFill, BsEyeSlashFill, BsShare } from "react-icons/bs";
 import { AiOutlineInteraction } from "react-icons/ai";
 import { ImConnection } from "react-icons/im";
 import { useAuth } from "../../hooks/useAuth";
@@ -14,7 +14,7 @@ import { RootState } from "../../interfaces/redux/rootState";
 import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
 import { BsMoon, BsSunFill } from "react-icons/bs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function RegisterPage() {
   const {
@@ -25,6 +25,8 @@ function RegisterPage() {
   } = useForm();
   const { theme } = useSelector((state: RootState) => state.theme);
   const dispatch: Dispatch<ThemeAction> = useDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const { preRegister, errors: preRegisterErrors } = useAuth();
 
@@ -49,6 +51,10 @@ function RegisterPage() {
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
     dispatch(setTheme(themeValue));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -122,18 +128,27 @@ function RegisterPage() {
                 styles="w-full"
                 error={errors.email ? errors.email.message : ""}
               />
+              <div className="relative">
+                <TextInput
+                  name="password"
+                  placeholder="Contraseña"
+                  label="Contraseña"
+                  type={showPassword ? "text" : "password"}
+                  register={register("clave", {
+                    required: "La contraseña es requerida",
+                  })}
+                  styles="w-full"
+                  error={errors.password ? errors.password.message : ""}
+                />
 
-              <TextInput
-                name="password"
-                placeholder="Contraseña"
-                label="Contraseña"
-                type="password"
-                register={register("clave", {
-                  required: "La contraseña es requerida",
-                })}
-                styles="w-full"
-                error={errors.password ? errors.password.message : ""}
-              />
+                <button
+                  type="button"
+                  className="absolute bottom-2 transform -translate-y-1/2 right-5"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                </button>
+              </div>
 
               <TextInput
                 name="justificacion"

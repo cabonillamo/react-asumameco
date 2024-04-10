@@ -4,6 +4,7 @@ import { useUsers } from "../../hooks/useUsers";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 function AddUser({ user, idRol }: { user: User; idRol: number }) {
   const {
@@ -15,9 +16,14 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
   const { createAsociado, createEncargado } = useUsers();
 
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const onSubmit = handleSubmit(async (data: any) => {
@@ -57,7 +63,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               {user.nombre} {user.apellidos}
             </h2>
           </div>
-          <p className="text-ascent-2 font-extralight mt-2">{user.email}</p>
+          <p className="text-ascent-2 mt-2">{user.email}</p>
           <div className="flex items-center mt-4 space-x-4">
             <span className="text-blue-500 hover:underline">
               {user.idRol === 1 ? (
@@ -88,6 +94,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               name="cedula"
               type="text"
               placeholder="Cédula del usuario"
+              styles="w-full"
               register={register("id", {
                 required: "La cédula es requerida",
                 pattern: {
@@ -107,6 +114,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               name="nombre"
               type="text"
               placeholder="Nombre del usuario"
+              styles="w-full"
               register={register("nombre", {
                 required: "El nombre es requerido",
               })}
@@ -118,6 +126,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               name="apellidos"
               type="text"
               placeholder="Apellidos del usuario"
+              styles="w-full"
               register={register("apellidos", {
                 required: "Los apellidos son requeridos",
               })}
@@ -128,6 +137,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               name="telefono"
               type="text"
               placeholder="Teléfono del usuario"
+              styles="w-full"
               register={register("telefono", {
                 required: "El teléfono es requerido",
                 pattern: {
@@ -143,22 +153,34 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
               name="email"
               type="email"
               placeholder="Correo electrónico"
+              styles="w-full"
               register={register("email", {
                 required: "El correo es requerido",
               })}
               error={errors.email ? errors.email.message : ""}
             />
 
-            <TextInput
-              id="clave"
-              name="clave"
-              type="password"
-              placeholder="Contraseña"
-              register={register("clave", {
-                required: "La contraseña es requerida",
-              })}
-              error={errors.clave ? errors.clave.message : ""}
-            />
+            <div className="relative">
+              <TextInput
+                id="clave"
+                name="clave"
+                type={showPassword ? "text" : "password"}
+                placeholder="Contraseña"
+                styles="w-full pr-10"
+                register={register("clave", {
+                  required: "La contraseña es requerida",
+                })}
+                error={errors.clave ? errors.clave.message : ""}
+              />
+
+              <button
+                type="button"
+                className="absolute bottom-2 transform -translate-y-1/2 right-5"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </button>
+            </div>
 
             {idRol === 1 && (
               <div className="mt-6">

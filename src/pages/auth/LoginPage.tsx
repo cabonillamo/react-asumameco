@@ -1,5 +1,5 @@
 import { MdFamilyRestroom } from "react-icons/md";
-import { BsShare } from "react-icons/bs";
+import { BsEyeFill, BsEyeSlashFill, BsShare } from "react-icons/bs";
 import { AiOutlineInteraction } from "react-icons/ai";
 import {
   TextInput,
@@ -31,6 +31,7 @@ function LoginPage() {
   const { theme } = useSelector((state: RootState) => state.theme);
   const dispatch: Dispatch<ThemeAction> = useDispatch();
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { signIn, errors: loginErrors } = useAuth();
   const navigate = useNavigate();
@@ -51,6 +52,10 @@ function LoginPage() {
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
     dispatch(setTheme(themeValue));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -89,19 +94,28 @@ function LoginPage() {
                 labelStyles="ml-2"
                 error={errors.email ? errors.email.message : ""}
               />
-              <TextInput
-                type="password"
-                id="passwordId1"
-                name="password"
-                placeholder="Contraseña"
-                label="Contraseña"
-                styles="w-full rounded-full"
-                labelStyles="ml-2"
-                register={register("clave", {
-                  required: "La contraseña es requerida",
-                })}
-                error={errors.password ? errors.password.message : ""}
-              />
+              <div className="relative">
+                <TextInput
+                  type={showPassword ? "text" : "password"}
+                  id="passwordId1"
+                  name="password"
+                  placeholder="Contraseña"
+                  label="Contraseña"
+                  styles="w-full rounded-full pr-10"
+                  labelStyles="ml-2"
+                  register={register("clave", {
+                    required: "La contraseña es requerida",
+                  })}
+                  error={errors.password ? errors.password.message : ""}
+                />
+                <button
+                  type="button"
+                  className="absolute bottom-2 transform -translate-y-1/2 right-5"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                </button>
+              </div>
               <Link
                 to="#"
                 onClick={() => setForgotPassword(true)}
