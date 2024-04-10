@@ -53,7 +53,7 @@ function Home() {
             <MoreInfo user={user} />
           </div>
           <div className="flex-1 h-full bg-primary px-4 flex flex-col gap-6 overflow-y-auto rounded-lg">
-            {user.idRol.toString() !== "" && ( 
+            {user.idRol.toString() !== "" && (
               <form className="bg-primary px-4 rounded-lg">
                 <div className="w-full flex items-center gap-2 py-4 border-b border-[#66666645]">
                   <img
@@ -81,7 +81,12 @@ function Home() {
             )}
             {events.length > 0 ? (
               events.map((event: Event) => (
-                <PostCard key={event.id} post={event} idUserLogged={user.id} />
+                <PostCard
+                  key={event.id}
+                  post={event}
+                  idUserLogged={user.id}
+                  user={user}
+                />
               ))
             ) : (
               <div className="w-full bg-primary shadow-sm rounded-lg px-6 py-5">

@@ -7,13 +7,16 @@ import { NoProfile } from "../../../assets/home";
 import { MdCancel } from "react-icons/md";
 import { useEvents } from "../../../hooks/useEvents";
 import { FaHandsHelping } from "react-icons/fa";
+import { User } from "../../../interfaces/context/auth/user";
 
 function PostCard({
   post,
   idUserLogged,
+  user,
 }: {
   post: Event;
   idUserLogged: number;
+  user: User;
 }) {
   const { participateEvent } = useEvents();
   const [showAll, setShowAll] = useState(0);
@@ -22,9 +25,13 @@ function PostCard({
     (participante) => participante.id === idUserLogged
   );
 
+  const isAdminOrModerator = user.idRol === 1 || user.idRol === 2;
+
   const handleParticipation = () => {
-    if (userParticipates) participateEvent(post.id, idUserLogged);
-    else participateEvent(post.id, idUserLogged);
+    if (!isAdminOrModerator) {
+      if (userParticipates) participateEvent(post.id, idUserLogged);
+      else participateEvent(post.id, idUserLogged);
+    }
   };
 
   return (
@@ -91,22 +98,24 @@ function PostCard({
         )}
       </div>
       <div className="mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t border-[#66666645]">
-        <p
-          onClick={handleParticipation}
-          className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
-        >
-          {userParticipates ? (
-            <>
-              <MdCancel size={20} color="red" />
-              <span>Cancelar participación</span>
-            </>
-          ) : (
-            <>
-              <IoCheckbox size={20} color="blue" />
-              <span>Participar</span>
-            </>
-          )}
-        </p>
+        {!isAdminOrModerator && (
+          <p
+            onClick={handleParticipation}
+            className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
+          >
+            {userParticipates ? (
+              <>
+                <MdCancel size={20} color="red" />
+                <span>Cancelar participación</span>
+              </>
+            ) : (
+              <>
+                <IoCheckbox size={20} color="blue" />
+                <span>Participar</span>
+              </>
+            )}
+          </p>
+        )}
 
         <div className="flex items-center gap-1">
           <span>{post.participantes.length}</span>
