@@ -22,7 +22,7 @@ const ReportsButton = ({
 
   return (
     <button
-      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+      className="bg-primary gap-4 m-2 hover:bg-secondary text-ascent-2 font-bold py-2 px-4 rounded inline-flex items-center"
       onClick={() => handleDownloadReport(reportType)}
     >
       <svg

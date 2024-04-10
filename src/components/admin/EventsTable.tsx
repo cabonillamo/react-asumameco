@@ -16,8 +16,8 @@ function EventsTable({ events }: { events: Event[] }) {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-sm text-left rtl:text-right text-ascent-2">
+        <thead className="text-xs text-ascent-1 uppercase bg-secondary">
           <tr>
             <th scope="col" className="px-6 py-3">
               Nombre del evento
@@ -40,7 +40,7 @@ function EventsTable({ events }: { events: Event[] }) {
           {events.map((event: Event) => (
             <tr
               key={event.id}
-              className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+              className="odd:bg-primary odd:dark:bg-secondary even:bg-gray-50 even:dark:bg-secondaryborder-b dark:border-gray-700"
             >
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {event.nombre}

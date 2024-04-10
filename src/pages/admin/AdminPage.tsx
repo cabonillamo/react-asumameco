@@ -112,20 +112,22 @@ function AdminPage() {
                   <EventsTable events={events} />
                 </div>
 
-                <p className="text-ascent-2 font-semibold pb-3">Reportes</p>
+                <div className="pt-10">
+                  <p className="text-ascent-2 font-semibold pb-3">Reportes</p>
 
-                <ReportsButtons
-                  handleDownloadReport={handleDownloadReport}
-                  reportType="usuarios"
-                />
-                <ReportsButtons
-                  handleDownloadReport={handleDownloadReport}
-                  reportType="eventos"
-                />
-                <ReportsButtons
-                  handleDownloadReport={handleDownloadReport}
-                  reportType="calendario_eventos"
-                />
+                  <ReportsButtons
+                    handleDownloadReport={handleDownloadReport}
+                    reportType="usuarios"
+                  />
+                  <ReportsButtons
+                    handleDownloadReport={handleDownloadReport}
+                    reportType="eventos"
+                  />
+                  <ReportsButtons
+                    handleDownloadReport={handleDownloadReport}
+                    reportType="calendario_eventos"
+                  />
+                </div>
               </>
             )}
           </div>
