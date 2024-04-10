@@ -5,10 +5,26 @@ import { ThemeAction, setTheme } from "../../redux/slice/theme/theme";
 import { Dispatch } from "@reduxjs/toolkit";
 import { CustomButton } from ".";
 import { useAuth } from "../../hooks/useAuth";
-import Logo from "../../icons/landing/Logo";
 import { RootState } from "../../interfaces/redux/rootState";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import logo from "../../assets/landing/Logo.jpg";
+import styled from "styled-components";
+
+const ImageContainer = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
 
 function TopBar() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -34,8 +50,8 @@ function TopBar() {
       <ToastContainer />
       <div className="topbar w-full flex items-center justify-between py-3 md:py-6 px-4 bg-primary">
         <Link to="/" className="flex gap-2 items-center">
-          <div className="p-1 md:p-2 bg-[#065ad8] rounded text-white">
-            <Logo />
+          <div className="p-1 md:p-2 rounded text-white">
+            <ImageContainer src={logo} alt="logo" />
           </div>
           <span className="text-xl md:text-2xl text-[#065ad8] font-semibold">
             Asomameco
@@ -53,7 +69,7 @@ function TopBar() {
             onClick={() => {
               handleLogout();
             }}
-            title="Logout"
+            title="Cerrar sesión"
             containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
           />
           {user.idRol.toString() !== "" && (
