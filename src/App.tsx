@@ -10,6 +10,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import { EventsProvider } from "./context/provider/EventsProvider";
 import { UsersProvider } from "./context/provider/UsersProvider";
+import { ReportProvider } from "./context/provider/ReportProvider";
 import { useSelector } from "react-redux";
 import { RootState } from "./interfaces/redux/rootState";
 
@@ -42,7 +43,9 @@ function App(): JSX.Element {
             <Route
               element={
                 <UsersProvider>
-                  <Outlet />
+                  <ReportProvider>
+                    <Outlet />
+                  </ReportProvider>
                 </UsersProvider>
               }
             >
