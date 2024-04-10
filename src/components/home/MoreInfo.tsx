@@ -12,7 +12,7 @@ function MoreInfo({ user }: { user: User | null }) {
     <div>
       <div className="w-full bg-primary shadow-sm rounded-lg px-6 py-5">
         <div className=" items-center justify-between text-ascent-1 pb-2 border-b border-[#66666645]">
-          <span> More Information </span>
+          <span> Más información</span>
           <div className="w-full flex flex-col gap-4 pt-4">
             {user.idRol === 1 ? (
               <div>
