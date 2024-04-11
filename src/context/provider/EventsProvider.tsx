@@ -4,6 +4,7 @@ import {
   createEventRequest,
   participateEventRequest,
   deleteEventRequest,
+  getAssistanceRequest,
 } from "../../api/events.api";
 import { useState } from "react";
 import { Event } from "../../interfaces/context/events/event";
@@ -60,6 +61,15 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const getAssistance = async (idEvento: number) => {
+    try {
+      const res = await getAssistanceRequest(idEvento);
+      return res.data;
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
   return (
     <EventsContext.Provider
       value={{
@@ -69,6 +79,7 @@ export const EventsProvider = ({ children }: { children: React.ReactNode }) => {
         createEvent,
         participateEvent,
         deleteEvent,
+        getAssistance,
       }}
     >
       {children}

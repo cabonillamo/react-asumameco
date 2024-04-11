@@ -18,8 +18,10 @@ function PostCard({
   idUserLogged: number;
   user: User;
 }) {
-  const { participateEvent } = useEvents();
+  const { participateEvent, getAssistance } = useEvents();
   const [showAll, setShowAll] = useState(0);
+  const [participantNames, setParticipantNames] = useState<string[]>([]);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const userParticipates = post.participantes.some(
     (participante) => participante.id === idUserLogged
@@ -32,6 +34,22 @@ function PostCard({
       if (userParticipates) participateEvent(post.id, idUserLogged);
       else participateEvent(post.id, idUserLogged);
     }
+  };
+
+  const getAssistanceByEvent = async () => {
+    const res = await getAssistance(post.id);
+    console.log(res);
+    setParticipantNames(
+      res.map(
+        (participant: any) =>
+          `${participant.nombre.trim()} ${participant.apellidos.trim()}`
+      )
+    );
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
   };
 
   return (
@@ -116,11 +134,23 @@ function PostCard({
             )}
           </p>
         )}
-
-        <div className="flex items-center gap-1">
+        <div
+          onMouseEnter={getAssistanceByEvent}
+          onMouseLeave={handleMouseLeave}
+          className="flex items-center gap-1"
+        >
           <span>{post.participantes.length}</span>
           <span>Participantes</span>
           <FaHandsHelping size={20} />
+          {isAdminOrModerator && showTooltip && (
+            <div className="tooltip">
+              <span className="tooltiptext">
+                {participantNames.map((name, index) => (
+                  <div key={index}>{name}</div>
+                ))}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -51,7 +51,7 @@ function AddUser({ user, idRol }: { user: User; idRol: number }) {
 
   return (
     <div className="p-5 lg:p-1 rounded-md">
-      <div className="pt-20 lg:fixed lg:top-7 lg:left-14 lg:w-3/12 md:fixed md:w-5/12">
+      <div className="pt-28 lg:fixed lg:top-7 lg:left-14 lg:w-3/12 md:fixed md:w-5/12">
         <div className="bg-secondary p-8 rounded-lg shadow-md max-w-md w-full mb-4">
           <div className="relative">
             <p>

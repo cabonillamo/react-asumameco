@@ -14,4 +14,5 @@ export interface eventsContextProps {
   ) => any;
   participateEvent: (IdEvento: number, IdAsociado: number) => any;
   deleteEvent: (IdEvento: number) => any;
+  getAssistance: (idEvento: number) => any;
 }

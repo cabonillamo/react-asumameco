@@ -39,3 +39,12 @@ export const deleteEventRequest = async (IdEvento: number) => {
     throw error;
   }
 };
+
+export const getAssistanceRequest = async (idEvento: number) => {
+  try {
+    const response = await client.get(`Evento/GetAsistencias/${idEvento}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
