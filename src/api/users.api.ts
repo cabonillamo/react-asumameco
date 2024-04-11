@@ -91,3 +91,21 @@ export const updateUserRequest = async (id: number, data: FormData) => {
     throw error;
   }
 };
+
+export const deleteAsociadoRequest = async (id: number) => {
+  try {
+    const res = await client.delete(`Usuario/EliminarAsociado/${id}`);
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteEncargadoRequest = async (id: number) => {
+  try {
+    const res = await client.delete(`Usuario/EliminarEncargado/${id}`);
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};

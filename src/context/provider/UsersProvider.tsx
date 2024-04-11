@@ -5,6 +5,8 @@ import {
   createEncargadoRequest,
   cambiarEstadoAsociadoRequest,
   cambiarEstadoEncargadoRequest,
+  deleteAsociadoRequest,
+  deleteEncargadoRequest,
 } from "../../api/users.api";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -77,6 +79,24 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const deleteAsociado = async (userId: number) => {
+    try {
+      await deleteAsociadoRequest(userId);
+      setAssociates(associates.filter((associate) => associate.id !== userId));
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
+  const deleteEncargado = async (userId: number) => {
+    try {
+      await deleteEncargadoRequest(userId);
+      setManagers(managers.filter((manager) => manager.id !== userId));
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
   useEffect(() => {
     const token = Cookie.get("token");
     if (token) {
@@ -96,6 +116,8 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
         createEncargado,
         cambiarEstadoAsociado,
         cambiarEstadoEncargado,
+        deleteAsociado,
+        deleteEncargado,
       }}
     >
       {children}
