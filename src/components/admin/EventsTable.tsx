@@ -42,7 +42,7 @@ function EventsTable({ events }: { events: Event[] }) {
               key={event.id}
               className="odd:bg-primary odd:dark:bg-secondary even:bg-gray-50 even:dark:bg-secondaryborder-b dark:border-gray-700"
             >
-              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                 {event.nombre}
               </td>
               <td className="px-6 py-4">{event.direccion}</td>
