@@ -48,20 +48,20 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
           <p key={index}>{forgotErrors}</p>
         ))}
       </span>
-      <h2 className="text-xl font-bold mb-4">Password Reset</h2>
-      {errors.email && <span className="error-message">Email is required</span>}
+      <h2 className="text-xl font-bold mb-4">Restablecimiento de contraseña</h2>
+      {errors.email && <span className="error-message">Correo Electronico requerido</span>}
       <ol className="space-y-4">
         {currentStep === 1 && (
-          <li className="step">Step 1: Enter your email</li>
+          <li className="step">Paso 1: Digite su Correo electronico</li>
         )}
         {currentStep === 2 && (
           <li className="step">
-            Step 2: Enter the verification code sent to your email
+            Paso 2: Ingresa el código de verificación enviado a tu correo electrónico
           </li>
         )}
         {currentStep === 3 && (
           <li className="step">
-            Step 3: Choose a new password for your account
+            Paso 3: Elija una nueva contraseña para su cuenta
           </li>
         )}
       </ol>
@@ -71,13 +71,13 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
             <>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Digite su Correo Electrónico"
                 className="bg-gray-100 border-2 border-gray-200 p-2 rounded-md mb-4"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "Correo electronico requerido",
                   pattern: {
                     value: /\S+@\S+\.\S+/,
-                    message: "Entered value does not match email format",
+                    message: "El valor ingresado no coincide con el formato de correo electrónico",
                   },
                 })}
               />
@@ -90,7 +90,7 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
                   borderRadius: "5px",
                 }}
               >
-                Next
+                Seguir
               </button>
             </>
           )}
@@ -98,9 +98,9 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
             <>
               <input
                 type="text"
-                placeholder="Enter the verification code sent to your email"
+                placeholder="Ingresa el código de verificación enviado a tu correo electrónico"
                 {...register("code", {
-                  required: "Verification code is required",
+                  required: "Se necesita un código de verificación",
                 })}
                 style={{
                   marginBottom: "10px",
@@ -120,7 +120,7 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
                   borderRadius: "5px",
                 }}
               >
-                Next
+                Seguir
               </button>
             </>
           )}
@@ -128,10 +128,10 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
             <>
               <input
                 {...register("newPassword", {
-                  required: "New password is required",
+                  required: "Se requiere nueva contraseña",
                 })}
                 type="password"
-                placeholder="Enter your new password"
+                placeholder="Introduzca su nueva contraseña"
                 style={{
                   marginBottom: "10px",
                   border: "2px solid #ccc",
@@ -152,7 +152,7 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
                   borderRadius: "5px",
                 }}
               >
-                Reset Password
+                Restablecer la contraseña
               </button>
             </>
           )}
@@ -165,7 +165,7 @@ const ForgotPasswordCard: React.FC<ForgotPasswordCardProps> = ({
               borderRadius: "5px",
             }}
           >
-            Cancel
+            Cancelar
           </button>
         </form>
       </div>

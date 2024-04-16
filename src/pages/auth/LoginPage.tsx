@@ -116,13 +116,24 @@ function LoginPage() {
                   {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
                 </button>
               </div>
+
+
+
+
+
+
               <Link
                 to="#"
                 onClick={() => setForgotPassword(true)}
-                className="text-sm text-right text-[#0b488c] font-semibold "
-              >
+                className="text-sm text-right text-[#0b488c] font-semibold ">
                 Olvidaste tu contraseña?
               </Link>
+
+
+
+
+
+
               <CustomButton
                 type="submit"
                 containerStyles={`inline-flex justify-center rounded-md bg-[#e4872c] px-8 py-3 text-sm font-medium text-white outline-none`}
@@ -143,7 +154,7 @@ function LoginPage() {
                     to="/"
                     className="text-[#0b488c] font-semibold ml-2 cursor-pointer"
                   >
-                    Ir a Home
+                    Ir a la página principal
                   </Link>
                   <span className="font-extrabold"> | </span>
                 </p>
